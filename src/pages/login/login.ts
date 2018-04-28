@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { NavController } from 'ionic-angular'
 import { OnHttpResponse } from '../../interfaces/onHttpResponse'
+import { RestClient } from '../../providers/rest-client/restClient';
 
 @Component({
   selector: 'page-login',
@@ -8,20 +9,26 @@ import { OnHttpResponse } from '../../interfaces/onHttpResponse'
 })
 export class LoginPage implements OnHttpResponse {
 
-  //regionConstructor
-  constructor(public navCtrl: NavController) {
+  signinStatus: String
+  signupStatus: String
 
+  //region CONST
+  constructor(public navCtrl: NavController, public rjs: RestClient) {
+    this.signinStatus = "signinShow"
+    this.signupStatus = "signupHide"
   }
-  //end region
+  //endegion CONST
 
-  //regionOnHttpResponse Interface
+  //region ONHTTPRESPONSE
   onDataReceived(data) {
-    throw new Error("Method not implemented.");
+    console.log(data);
+
+
   }
   onErrorReceivingData(message: any) {
     throw new Error("Method not implemented.");
   }
-  //end region
+  //endregion ONHTTPRESPONSE
 
   public type = 'password';
   public showPass = false;
@@ -50,6 +57,23 @@ export class LoginPage implements OnHttpResponse {
     } else {
       this.pwdType = 'password';
       this.pwdIcon = 'md-eye-off';
+    }
+  }
+
+  tapButton() {
+    this.rjs.prepareRequest("", "", this)
+    this.rjs.doRequest("GET")
+  }
+
+  switchForm() {
+    this.signinStatus = this.signinStatus == "signinHide" ? "signinShow" : "signinHide"
+    this.signupStatus = this.signupStatus == "signupHide" ? "signupShow" : "signupHide"
+  }
+
+  eventHandler(keyCode) {
+    if (keyCode.keyCode == 13) {
+      this.showHidePassword()
+      this.tapButton()
     }
   }
 }

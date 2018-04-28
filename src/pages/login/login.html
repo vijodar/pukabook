@@ -1,53 +1,68 @@
-<ion-content padding class="bg-style">
-  <!-- <div class="spacer" style="height:100px;"></div> -->
-  <div class="center">
-    <form>
-      <ion-item>
-        <ion-label>
-          <ion-icon name="mail"></ion-icon>
-        </ion-label>
-        <ion-input type="email" placeholder="Email" name="email"></ion-input>
-      </ion-item>
-      <!-- <ion-item>
-        <ion-label> <ion-icon name="key"></ion-icon></ion-label>
-        <ion-input type="password" placeholder="Password"></ion-input>
-      </ion-item> -->
-      <ion-item>
-        <!-- <ion-label floating>Password</ion-label>
-        <ion-input type="{{type}}" name="password" ngModel #password="ngModel" required pattern=".{4,10}"></ion-input> -->
+<!-- region VIDEO_BACKGROUND -->
+<video webkit-playsinline playsinline autoplay loop muted poster="assets/imgs/loginPage.png" src="assets/videos/loginPage.mp4" type="video/mp4" class="bgVid">
+</video>
+<!-- endregion VIDEO_BACKGROUND -->
 
-        <ion-label> <ion-icon name="key"></ion-icon></ion-label>
-        <ion-input type="{{pwdType}}" placeholder="Password"></ion-input>
-
-        <!-- <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()">
-          <ion-icon name="ios-eye-off-outline"></ion-icon>
-        </button>
-        <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()">
-          <ion-icon name="ios-eye-outline"></ion-icon>
-        </button> -->
-
-        <button ion-button="" icon-only="" clear="" color="dark" item-right="" (click)="showHidePassword()"> 
-          <ion-icon [name]="pwdIcon"></ion-icon>
-        </button>
-
-
-
-      </ion-item>
-      <br/>
-      <button ion-button color="positive" block>
-        Sign In
+<!-- region LOGIN_FORM -->
+<div class="bgBlack" style="background: rgba(0, 0, 0, 0.65);"></div>
+<div id="in" class="center {{signinStatus}}">
+  <form>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="mail"></ion-icon>
+      </ion-label>
+      <ion-input type="email" placeholder="Email" name="email" maxlength="40"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="key"></ion-icon>
+      </ion-label>
+      <ion-input type="{{pwdType}}" placeholder="Password" maxlength="20" (keypress)="eventHandler($event)"></ion-input>
+      <button ion-button="" icon-only="" clear="" color="dark" item-right="" (click)="showHidePassword()">
+        <ion-icon [name]="pwdIcon"></ion-icon>
       </button>
-    </form>
-    <div class="spacer" style="height:25px;"></div>
-    <button ion-button color="danger" block>
-      Google+ Sign In
+    </ion-item>
+    <br/>
+    <button ion-button color="positive" block (click)="tapButton()">
+      Sign In
     </button>
+  </form>
+  <div class="spacer" style="height:25px;"></div>
+  <button ion-button color="danger" block>
+    Sign in with Google+
+  </button>
+</div>
+<!-- endregion SIGNIN_FORM -->
 
-
-  </div>
-  <footer>
-    <button float-end ion-button clear color="positive" class="footer">
-      New here? Sign Up
+<!-- region SIGNUP_FORM -->
+<div id="up" class="center {{signupStatus}}">
+  <form>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="mail"></ion-icon>
+      </ion-label>
+      <ion-input type="email" placeholder="Email" name="email" maxlength="40"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="key"></ion-icon>
+      </ion-label>
+      <ion-input type="{{pwdType}}" placeholder="Password" maxlength="20"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="key"></ion-icon>
+      </ion-label>
+      <ion-input type="{{pwdType}}" placeholder="Confirm Password" maxlength="20"></ion-input>
+    </ion-item>
+    <br/>
+    <button ion-button color="positive" block (click)="tapButton()">
+      Sign Up
     </button>
-  </footer>
-</ion-content>
+  </form>
+</div>
+<!-- endregion SIGNup_FORM -->
+
+<button float-end ion-button clear color="positive" class="footer" (click)="switchForm()">
+  New here? Sign Up
+</button>

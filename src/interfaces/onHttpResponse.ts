@@ -1,4 +1,4 @@
 export interface OnHttpResponse {
-    onDataReceived(data)
-    onErrorReceivingData(message)
+    onDataReceived(data: object)
+    onErrorReceivingData(message: string)
 }

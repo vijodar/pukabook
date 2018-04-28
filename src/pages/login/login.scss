@@ -1,22 +1,117 @@
 page-login {
-    .bg-style {
-        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Rotating_earth_%28large%29.gif/200px-Rotating_earth_%28large%29.gif");
-        
+    * {
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
     }
-    .center{
+    .center {
         position: absolute;
         width: 100%;
-        top:50%;
-        left:50%;
-        padding:15px;
+        top: 50%;
+        left: 50%;
+        padding: 15px;
         -ms-transform: translateX(-50%) translateY(-50%);
-        -webkit-transform: translate(-50%,-50%);
-        transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     }
-
-    .footer{ 
+    .footer {
         position: absolute;
         right: 0;
-        bottom: 25px; 
+        bottom: 25px;
+    }
+    .bgBlack {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+        animation-duration: 2s;
+    }
+    .bgVid {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        min-width: 110%;
+        min-height: 110%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        z-index: 0;
+    }
+    .signinShow {
+        visibility: visible;
+        opacity: 1;
+        -webkit-transition: opacity 800ms linear;
+        animation-name: moveDown;
+        animation-iteration-count: 1;
+        -webkit-animation-duration: 800ms;
+    }
+    .signupShow {
+        visibility: visible;
+        opacity: 1;
+        -webkit-transition: opacity 800ms linear;
+        animation-name: moveUp2;
+        animation-iteration-count: 1;
+        -webkit-animation-duration: 800ms;
+    }
+    .signinHide {
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transition: visibility 0s 800ms, opacity 800ms linear;
+        animation-name: moveUp;
+        animation-iteration-count: 1;
+        -webkit-animation-duration: 800ms;
+    }
+    .signupHide {
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transition: visibility 0s 800ms, opacity 800ms linear;
+        animation-name: moveDown2;
+        animation-iteration-count: 1;
+        -webkit-animation-duration: 800ms;
+    }
+    @keyframes fadeInOpacity {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @-webkit-keyframes moveDown {
+        0% {
+            -webkit-transform: translate(-50%, -225%) // top: -25%
+        }
+        100% {
+            -webkit-transform: translate(-50%, -50%) // top: 50%
+        }
+    }
+    @-webkit-keyframes moveUp {
+        0% {
+            -webkit-transform: translate(-50%, -50%) // top: 50%
+        }
+        100% {
+            -webkit-transform: translate(-50%, -225%) // top: -25%
+        }
+    }
+    @-webkit-keyframes moveDown2 {
+        0% {
+            -webkit-transform: translate(-50%, -50%) // top: 50%
+        }
+        100% {
+            -webkit-transform: translate(-50%, 225%) // top: 125%
+        }
+    }
+    @-webkit-keyframes moveUp2 {
+        0% {
+            -webkit-transform: translate(-50%, 225%) // top: 125%
+        }
+        100% {
+            -webkit-transform: translate(-50%, -50%) // top: 50%
+        }
     }
 }
