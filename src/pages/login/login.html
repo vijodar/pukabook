@@ -1,68 +1,19 @@
-<!-- region VIDEO_BACKGROUND -->
+<!-- region BACKGROUND -->
 <video webkit-playsinline playsinline autoplay loop muted poster="assets/imgs/loginPage.png" src="assets/videos/loginPage.mp4" type="video/mp4" class="bgVid">
 </video>
-<!-- endregion VIDEO_BACKGROUND -->
-
-<!-- region LOGIN_FORM -->
 <div class="bgBlack" style="background: rgba(0, 0, 0, 0.65);"></div>
-<div id="in" class="center {{signinStatus}}">
-  <form>
-    <ion-item>
-      <ion-label>
-        <ion-icon name="mail"></ion-icon>
-      </ion-label>
-      <ion-input type="email" placeholder="Email" name="email" maxlength="40"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        <ion-icon name="key"></ion-icon>
-      </ion-label>
-      <ion-input type="{{pwdType}}" placeholder="Password" maxlength="20" (keypress)="eventHandler($event)"></ion-input>
-      <button ion-button="" icon-only="" clear="" color="dark" item-right="" (click)="showHidePassword()">
-        <ion-icon [name]="pwdIcon"></ion-icon>
-      </button>
-    </ion-item>
-    <br/>
-    <button ion-button color="positive" block (click)="tapButton()">
-      Sign In
-    </button>
-  </form>
-  <div class="spacer" style="height:25px;"></div>
-  <button ion-button color="danger" block>
-    Sign in with Google+
-  </button>
-</div>
+<!-- endregion BACKGROUND -->
+
+<!-- region SIGNIN_FORM -->
+<signin id="in" class="center {{signinStatus}}"></signin>
 <!-- endregion SIGNIN_FORM -->
 
 <!-- region SIGNUP_FORM -->
-<div id="up" class="center {{signupStatus}}">
-  <form>
-    <ion-item>
-      <ion-label>
-        <ion-icon name="mail"></ion-icon>
-      </ion-label>
-      <ion-input type="email" placeholder="Email" name="email" maxlength="40"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        <ion-icon name="key"></ion-icon>
-      </ion-label>
-      <ion-input type="{{pwdType}}" placeholder="Password" maxlength="20"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        <ion-icon name="key"></ion-icon>
-      </ion-label>
-      <ion-input type="{{pwdType}}" placeholder="Confirm Password" maxlength="20"></ion-input>
-    </ion-item>
-    <br/>
-    <button ion-button color="positive" block (click)="tapButton()">
-      Sign Up
-    </button>
-  </form>
-</div>
-<!-- endregion SIGNup_FORM -->
+<signup id="up" class="center {{signupStatus}}"></signup>
+<!-- endregion SIGNUP_FORM -->
 
+<!-- region BUTTON_SWITCHFORM -->
 <button float-end ion-button clear color="positive" class="footer" (click)="switchForm()">
   New here? Sign Up
 </button>
+<!-- endregion BUTTON_SWITCHFORM -->
