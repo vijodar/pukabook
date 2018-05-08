@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OnHttpResponse } from '../../interfaces/onHttpResponse';
-import 'rxjs/add/operator/map';
 
 @Injectable()
-export class RestClient {
+export class RestClientProvider {
 
+    //region VARIABLES
     private response: OnHttpResponse
     private headers: HttpHeaders
-    private urlApi: string = "https://randomuser.me/api/?results=100"
+    private urlApi: string = "https://python-server-vicjod.c9users.io/"
     private url: string
-
     private METHODS = ["GET", "POST", "PUT", "DELETE"]
+    //endregion VARIABLES
 
+    //region CONSTRUCTOR
     constructor(public http: HttpClient) { }
+    //endregion CONSTRUCTOR
 
-    public prepareRequest(target: string, auth: string, responseObject: OnHttpResponse, ) {
+    //region PRIVATE_METHODS
+    private prepareRequest(target: string, auth: string, responseObject: OnHttpResponse) {
         this.url = this.urlApi + target
         this.response = responseObject
 
@@ -24,8 +27,14 @@ export class RestClient {
             'Authorization': auth
         })
     }
+    //endregion PRIVATE_METHODS
 
-    public doRequest(method: string = "GET", data?: Map<string, any>) {
+    //region PUBLIC_METHODS
+    public doRequest(method: string = "GET", target: string, auth: string,
+                    responseObject: OnHttpResponse, data?: Map<string, any>) {
+                        
+        this.prepareRequest(target, auth, responseObject)
+
         var djson: string = null
         if (data != null) {
             if (data.size > 0) {
@@ -61,4 +70,5 @@ export class RestClient {
                 break;
         }
     }
+    //endregion PUBLIC_METHODS
 }
