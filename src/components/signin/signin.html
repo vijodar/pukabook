@@ -1,0 +1,36 @@
+<div>
+  <form>
+    <!-- INPUT EMAIL -->
+    <ion-item>
+      <ion-label>
+        <ion-icon name="mail"></ion-icon>
+      </ion-label>
+      <ion-input type="email" placeholder="{{ 'SIGN_IN_EMAIL_PLACEHOLDER' | translate }}" name="email" maxlength="40" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <!-- INPUT PASSWORD -->
+    <ion-item>
+      <ion-label>
+        <ion-icon name="key"></ion-icon>
+      </ion-label>
+      <ion-input type="{{pwdType}}" placeholder="{{ 'SIGN_IN_PASSWORD_PLACEHOLDER'  | translate }}" name="password" maxlength="20" (keypress)="eventHandler($event)" [(ngModel)]="pass"></ion-input>
+
+      <!-- BUTTON SHOW/HIDE PASSWORD -->
+      <button ion-button="" icon-only="" clear="" color="dark" item-right="" (click)="showHidePassword()">
+        <ion-icon [name]="pwdIcon"></ion-icon>
+      </button>
+    </ion-item>
+    <br/>
+
+    <!-- BUTTON SIGN IN -->
+    <button ion-button color="positive" block (click)="signInButton()">
+      {{ 'SIGN_IN_BUTTON'  | translate }}
+    </button>
+  </form>
+  <div class="spacer" style="height:25px;"></div>
+
+  <!-- BUTTON GOOGLE+ -->
+  <button ion-button color="danger" block>
+    {{ 'SIGN_IN_GOOGLE'  | translate }}
+  </button>
+</div>

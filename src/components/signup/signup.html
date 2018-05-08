@@ -1,0 +1,33 @@
+<div>
+  <form>
+    <!-- INPUT EMAIL -->
+    <ion-item>
+      <ion-label>
+        <ion-icon name="mail"></ion-icon>
+      </ion-label>
+      <ion-input type="email" placeholder="Email" name="email" maxlength="40"></ion-input>
+    </ion-item>
+
+    <!-- INPUT PASSWORD -->
+    <ion-item>
+      <ion-label>
+        <ion-icon name="key"></ion-icon>
+      </ion-label>
+      <ion-input type="password" placeholder="Password" maxlength="20"></ion-input>
+    </ion-item>
+
+    <!-- INPUT PASSWORD2 -->
+    <ion-item>
+      <ion-label>
+        <ion-icon name="key"></ion-icon>
+      </ion-label>
+      <ion-input type="password" placeholder="Confirm Password" maxlength="20"></ion-input>
+    </ion-item>
+    <br/>
+
+    <!-- BUTTON SIGN UP -->
+    <button ion-button color="positive" block (click)="signUpButton()">
+      Sign Up
+    </button>
+  </form>
+</div>
