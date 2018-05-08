@@ -1,0 +1,11 @@
+{
+    "SIGN_IN_EMAIL_PLACEHOLDER": "Email",
+    "SIGN_IN_PASSWORD_PLACEHOLDER": "Password",
+    "SIGN_IN_BUTTON": "Sign In",
+    "SIGN_IN_GOOGLE": "Sign in with Google+",
+
+    "SIGN_UP_EMAIL_PLACEHOLDER": "Email",
+    "SIGN_UP_PASSWORD_PLACEHOLDER": "Password",
+    "SIGN_UP_PASSWORD2_PLACEHOLDER": "Confirm Password",
+    "SIGN_UP_BUTTON": "Sign Up"
+}
