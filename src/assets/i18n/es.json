@@ -1,0 +1,14 @@
+{
+    "SIGN_IN_EMAIL_PLACEHOLDER": "Email",
+    "SIGN_IN_PASSWORD_PLACEHOLDER": "Contraseña",
+    "SIGN_IN_BUTTON": "Inicia sesión",
+    "SIGN_IN_GOOGLE": "Entra con Google+",
+
+    "SIGN_UP_EMAIL_PLACEHOLDER": "Email",
+    "SIGN_UP_PASSWORD_PLACEHOLDER": "Contraseña",
+    "SIGN_UP_PASSWORD2_PLACEHOLDER": "Confirme su contraseña",
+    "SIGN_UP_BUTTON": "Registrarse",
+
+    "LOGIN_SWITCH_SIGNIN": "¿Nuevo aquí? Registrate",
+    "LOGIN_SWITCH_SIGNUP": "¿Tienes cuenta? Inicia sesión"
+}
