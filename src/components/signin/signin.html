@@ -5,7 +5,7 @@
       <ion-label>
         <ion-icon name="mail"></ion-icon>
       </ion-label>
-      <ion-input type="email" placeholder="{{ 'SIGN_IN_EMAIL_PLACEHOLDER' | translate }}" name="email" maxlength="40" [(ngModel)]="email"></ion-input>
+      <ion-input type="email" placeholder="{{ 'SIGN_IN_EMAIL_PLACEHOLDER' | translate }}" name="email" maxlength="40" [(ngModel)]="signinEmail"></ion-input>
     </ion-item>
 
     <!-- INPUT PASSWORD -->
@@ -13,7 +13,7 @@
       <ion-label>
         <ion-icon name="key"></ion-icon>
       </ion-label>
-      <ion-input type="{{pwdType}}" placeholder="{{ 'SIGN_IN_PASSWORD_PLACEHOLDER'  | translate }}" name="password" maxlength="20" (keypress)="eventHandler($event)" [(ngModel)]="pass"></ion-input>
+      <ion-input type="{{pwdType}}" placeholder="{{ 'SIGN_IN_PASSWORD_PLACEHOLDER'  | translate }}" name="password" maxlength="20" (keypress)="eventHandler($event)" [(ngModel)]="signinPass"></ion-input>
 
       <!-- BUTTON SHOW/HIDE PASSWORD -->
       <button ion-button="" icon-only="" clear="" color="dark" item-right="" (click)="showHidePassword()">

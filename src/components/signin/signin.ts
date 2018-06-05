@@ -1,9 +1,13 @@
-import { User } from './../../poto/user';
+import { UserDBProvider } from './../../providers/userdb/userdb';
+import { ErrorDialogProvider } from './../../providers/error-dialog/error-dialog';
+import { User } from './../../model/user';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
 import { Component } from '@angular/core';
 import { RestClientProvider } from '../../providers/rest-client/restClient';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
+import { HasherProvider } from '../../providers/hasher/hasher';
+import sha1 from 'js-sha1'
 
 @Component({
   selector: 'signin',
@@ -19,13 +23,19 @@ export class SigninComponent implements OnHttpResponse {
   public pwdType: string = "password"
   public pwdIcon: string = "md-eye-off"
 
-  public email: any
-  public pass: any
+  public signinEmail: string
+  public signinPass: string
 
   //endregion PUBLIC_VARIABLES
 
   //region CONST
-  constructor(public rjs: RestClientProvider, public storage: Storage, public translate: TranslateService) {
+  constructor(public rjs: RestClientProvider,
+    public storage: Storage,
+    public translate: TranslateService,
+    public dialogError: ErrorDialogProvider,
+    public userdb: UserDBProvider,
+    public hasher: HasherProvider) {
+
     this.starter()
   }
   //endregion CONST
@@ -36,38 +46,29 @@ export class SigninComponent implements OnHttpResponse {
     var result = data.result
     if (result.auth) {
       console.log("Signin");
-      var user = new User({
-        email: this.email,
-        pass: this.pass,
-        token: result.t
-      })
-      this.storage.set("user", user)
+      var user: User = <User>result.userinfo
+      user.token = result.t
+      this.userdb.removeUser()
+      this.userdb.addUser(user)
     } else {
-      console.log("Signin error");
-
+      this.onErrorReceivingData(1)
     }
   }
-  onErrorReceivingData(message: any) {
-    throw new Error("Method not implemented.")
+  onErrorReceivingData(message: number) {
+    this.dialogError.showErrorDialog(message)
   }
   //endregion ONHTTPRESPONSE
 
   //region PUBLIC_METHODS
-  private starter() {
-    this.email = ""
-    this.pass = ""
-  }
-
-  eventHandler(keyCode) {
+  public eventHandler(keyCode) {
     if (keyCode.keyCode == 13) {
       this.showHidePassword()
       this.signInButton()
     }
   }
 
-  showHidePassword() {
+  public showHidePassword() {
     this.showPwd = !this.showPwd;
-
     if (this.showPwd) {
       this.pwdType = 'text'
       this.pwdIcon = 'md-eye'
@@ -77,12 +78,44 @@ export class SigninComponent implements OnHttpResponse {
     }
   }
 
-  signInButton() {
-    var userpass = btoa(this.email + ":" + this.pass)
-    var auth = "Basic " + userpass
-    console.log(auth);
+  public signInButton() {
+    // console.log(this.hasher.encrypt(this.signinEmail),
+    //   this.hasher.decrypt("U2FsdGVkX18112X1bpPYhYbPpstfad/AccoQOZMU/KI="));
 
-    this.rjs.doRequest("GET", "login", auth + "", this)
+    if (this.checkEmailField() && this.checkPassField()) {
+      var userpass = btoa(this.hasher.encrypt(this.signinEmail) + ":" + sha1(this.signinPass))
+      var header = "Basic " + userpass
+      this.rjs.doRequest("POST", "login", header, this)
+    }
   }
   //endregion PUBLIC_METHODS
+
+  //region PRIVATE_METHODS
+  private starter() {
+    this.signinEmail = ""
+    this.signinPass = ""
+  }
+
+  private checkEmailField(): boolean {
+    if (this.signinEmail.length > 0) {
+      if (this.signinEmail.match(/^(\w|[_.])+\@[a-z]+\.[a-z]+/)) {
+        return true
+      } else {
+        this.dialogError.showErrorDialog(3)
+      }
+    } else {
+      this.dialogError.showErrorDialog(2)
+    }
+    return false
+  }
+
+  private checkPassField(): boolean {
+    if (this.signinPass.length > 0) {
+      return true
+    } else {
+      this.dialogError.showErrorDialog(4)
+    }
+    return false
+  }
+  //endregion PRIVATE_METHODS
 }
