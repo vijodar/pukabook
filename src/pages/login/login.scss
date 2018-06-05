@@ -74,6 +74,12 @@ page-login {
         animation-iteration-count: 1;
         -webkit-animation-duration: 800ms;
     }
+    .btnSwitchFadeOI{
+        -webkit-transition: visibility 0s 800ms, opacity 800ms linear;
+        animation-name: fadeOutInOpacity;
+        animation-iteration-count: 1;
+        -webkit-animation-duration: 800ms;
+    }
     @keyframes fadeInOpacity {
         0% {
             opacity: 0;
@@ -112,6 +118,20 @@ page-login {
         }
         100% {
             -webkit-transform: translate(-50%, -50%) // top: 50%
+        }
+    }
+    @keyframes fadeOutInOpacity {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        75%{
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
         }
     }
 }
