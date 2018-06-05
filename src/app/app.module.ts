@@ -1,3 +1,5 @@
+import { MyApp } from './app.component';
+
 //region IONIC
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -16,7 +18,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 //region NGX_TRANSLATE
 
-import { MyApp } from './app.component';
+//region SQLite
+import { SQLite } from '@ionic-native/sqlite';
+//endregion SQLite
 
 //region PAGES
 import { LoginPage } from '../pages/login/login';
@@ -24,6 +28,9 @@ import { LoginPage } from '../pages/login/login';
 
 //region PROVIDERS
 import { RestClientProvider } from '../providers/rest-client/restClient';
+import { ErrorDialogProvider } from '../providers/error-dialog/error-dialog';
+import { UserDBProvider } from '../providers/userdb/userdb';
+import { HasherProvider } from '../providers/hasher/hasher';
 //endregion PROVIDERS
 
 //region COMPONENTS
@@ -61,6 +68,10 @@ import { SignupComponent } from '../components/signup/signup';
     SplashScreen,
     RestClientProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ErrorDialogProvider,
+    UserDBProvider,
+    HasherProvider,
+    SQLite,
   ]
 })
 export class AppModule { }
