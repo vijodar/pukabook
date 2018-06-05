@@ -1,14 +1,21 @@
 {
-    "SIGN_IN_EMAIL_PLACEHOLDER": "Email",
-    "SIGN_IN_PASSWORD_PLACEHOLDER": "Contraseña",
-    "SIGN_IN_BUTTON": "Inicia sesión",
-    "SIGN_IN_GOOGLE": "Entra con Google+",
-
-    "SIGN_UP_EMAIL_PLACEHOLDER": "Email",
+    "SIGN_IN_EMAIL_PLACEHOLDER": "Entra con Google+",
+    "SIGN_IN_PASSWORD_PLACEHOLDER": "Registrarse",
+    "SIGN_IN_BUTTON": "Email",
+    "SIGN_IN_GOOGLE": "Contraseña",
+    "SIGN_UP_EMAIL_PLACEHOLDER": "Confirme su contraseña",
     "SIGN_UP_PASSWORD_PLACEHOLDER": "Contraseña",
-    "SIGN_UP_PASSWORD2_PLACEHOLDER": "Confirme su contraseña",
-    "SIGN_UP_BUTTON": "Registrarse",
-
-    "LOGIN_SWITCH_SIGNIN": "¿Nuevo aquí? Registrate",
-    "LOGIN_SWITCH_SIGNUP": "¿Tienes cuenta? Inicia sesión"
+    "SIGN_UP_PASSWORD2_PLACEHOLDER": "Contraseña",
+    "SIGN_UP_BUTTON": "Email",
+    "LOGIN_SWITCH_SIGNIN": "¿Tienes cuenta? Inicia sesión",
+    "LOGIN_SWITCH_SIGNUP": "Inicia sesión",
+    "LOADING": "¿Nuevo aquí? Registrate",
+    "ERROR": "Error",
+    "ERROR_OK": "Cargando...",
+    "ERROR_MSG_1": "Email y/o contraseña incorrecto/s",
+    "ERROR_MSG_2": "El campo del email esta vacío",
+    "ERROR_MSG_3": "Email invalido",
+    "ERROR_MSG_4": "Los/Un campo de contraseña esta vacío",
+    "ERROR_MSG_5": "Los campos de contraseña no son iguales",
+    "ERROR_MSG_6": "No se puede conectar con el servidor. Vuelva a intentarlo mas tarde"
 }
