@@ -14,7 +14,7 @@
     "ERROR_OK": "OK",
     "ERROR_MSG_1": "Email and/or password are incorrect",
     "ERROR_MSG_2": "The email field is empty",
-    "ERROR_MSG_3": "Not detect email on the email field",
+    "ERROR_MSG_3": "Invalid email",
     "ERROR_MSG_4": "The/An password fields are empty",
     "ERROR_MSG_5": "The password fields do not match",
     "ERROR_MSG_6": "Can't connect with the server. Try it again later"
