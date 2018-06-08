@@ -26,7 +26,7 @@ export class ExpandableComponent {
 
   //region PUBLIC_METHODS
   public changeExpanded() {
-    this.expanded = this.expanded == true ? false : true
+    this.expanded = !this.expanded
     this.icon = this.expanded == true ? "arrow-dropup" : "arrow-dropdown"
   }
 
