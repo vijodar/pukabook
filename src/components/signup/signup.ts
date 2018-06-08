@@ -2,6 +2,7 @@ import { ErrorDialogProvider } from './../../providers/error-dialog/error-dialog
 import { Component } from '@angular/core';
 import { OnHttpResponse } from '../../interfaces/onHttpResponse';
 import { RestClientProvider } from '../../providers/rest-client/restClient';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'signup',
@@ -9,15 +10,30 @@ import { RestClientProvider } from '../../providers/rest-client/restClient';
 })
 export class SignupComponent implements OnHttpResponse {
 
+  //region CONSTANTS
+  private translateStrings = {
+    "SIGN_UP_EMAIL_PLACEHOLDER": "SIGN_UP_EMAIL_PLACEHOLDER",
+    "SIGN_UP_PASSWORD_PLACEHOLDER": "SIGN_UP_PASSWORD_PLACEHOLDER",
+    "SIGN_UP_PASSWORD2_PLACEHOLDER": "SIGN_UP_PASSWORD2_PLACEHOLDER",
+    "SIGN_UP_BUTTON": "SIGN_UP_BUTTON",
+  }
+  //endregion CONSTANTS
+
   //region PUBLIC_VARIABLES
   public signupEmail: string
   public signupPass1: string
   public signupPass2: string
+
+  public emailPlaceholder: string
+  public passPlaceholder: string
+  public passAPlaceholder: string
+  public signupBtnText: string
   //endregion PUBLIC_VARIABLES
 
   //region CONST
-  constructor(public rjs: RestClientProvider,
-    public dialogError: ErrorDialogProvider) {
+  constructor(private rjs: RestClientProvider,
+    private dialogError: ErrorDialogProvider,
+    private translate: TranslateService, ) {
 
     this.starter()
   }
@@ -47,6 +63,18 @@ export class SignupComponent implements OnHttpResponse {
     this.signupEmail = ""
     this.signupPass1 = ""
     this.signupPass2 = ""
+
+    this.translate.get(this.translateStrings.SIGN_UP_BUTTON)
+      .subscribe(value => { this.signupBtnText = value })
+
+    this.translate.get(this.translateStrings.SIGN_UP_EMAIL_PLACEHOLDER)
+      .subscribe(value => { this.emailPlaceholder = value })
+
+    this.translate.get(this.translateStrings.SIGN_UP_PASSWORD_PLACEHOLDER)
+      .subscribe(value => { this.passPlaceholder = value })
+
+    this.translate.get(this.translateStrings.SIGN_UP_PASSWORD2_PLACEHOLDER)
+      .subscribe(value => { this.passAPlaceholder = value })
   }
 
   private checkEmailField(): boolean {
@@ -71,7 +99,7 @@ export class SignupComponent implements OnHttpResponse {
       } else {
         this.dialogError.showErrorDialog(5)
       }
-    }else{
+    } else {
       this.dialogError.showErrorDialog(4)
     }
 

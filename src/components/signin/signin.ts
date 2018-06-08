@@ -16,22 +16,37 @@ import sha1 from 'js-sha1';
 })
 export class SigninComponent implements OnHttpResponse {
 
+  //region INPUTS
   @Input()
   private navCtrl: NavController
+  //endregion INPUTS
+
+  //region CONSTANTS
+  private translateStrings = {
+    "SIGN_IN_GOOGLE": "SIGN_IN_GOOGLE",
+    "SIGN_IN_BUTTON": "SIGN_IN_BUTTON",
+    "SIGN_IN_EMAIL_PLACEHOLDER": "SIGN_IN_EMAIL_PLACEHOLDER",
+    "SIGN_IN_PASSWORD_PLACEHOLDER": "SIGN_IN_PASSWORD_PLACEHOLDER",
+  }
+  //endregion CONSTANTS
 
   //region PRIVATE_VARIABLES
   private showPwd: boolean = false
   //endregion PRIVATE_VARIABLES
-
+  
   //region PUBLIC_VARIABLES
   public pwdType: string = "password"
   public pwdIcon: string = "md-eye-off"
-
+  
   public signinEmail: string
   public signinPass: string
-
+  
+  public emailPlaceHolder: string
+  public passwordPlaceHolder: string
+  public loginBtnText: string
+  public googleBtnText: string
   //endregion PUBLIC_VARIABLES
-
+  
   //region CONST
   constructor(
     public rjs: RestClientProvider,
@@ -93,6 +108,18 @@ export class SigninComponent implements OnHttpResponse {
     this.signinEmail = ""
     this.signinPass = ""
     this.userdb.removeUser()
+
+    this.translate.get(this.translateStrings.SIGN_IN_BUTTON)
+    .subscribe(value => { this.loginBtnText = value })
+
+    this.translate.get(this.translateStrings.SIGN_IN_EMAIL_PLACEHOLDER)
+    .subscribe(value => { this.emailPlaceHolder = value })
+
+    this.translate.get(this.translateStrings.SIGN_IN_GOOGLE)
+    .subscribe(value => { this.googleBtnText = value })
+
+    this.translate.get(this.translateStrings.SIGN_IN_PASSWORD_PLACEHOLDER)
+    .subscribe(value => { this.passwordPlaceHolder = value })
   }
 
   private checkEmailField(): boolean {
