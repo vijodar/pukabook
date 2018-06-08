@@ -6,6 +6,7 @@ import { Author } from '../../model/author';
 import { Book } from '../../model/book';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthorPage } from '../author/author';
 
 @IonicPage()
 @Component({
@@ -26,7 +27,7 @@ export class BookDetailsPage implements OnHttpResponse {
   //region PUBLIC_VARIABLES
   public book: Book
   public author: Author
-  public books = []
+  public books: Book[]
 
   public synopsis: string
   public read: string
@@ -96,6 +97,8 @@ export class BookDetailsPage implements OnHttpResponse {
   //endregion PRIVATE_METHODS
 
   //region PUBLIC_METHODS
-
+  public viewAuthorDetails() {
+    this.navCtrl.push(AuthorPage, { author: this.author })
+  }
   //endregion PUBLIC_METHODS
 }
