@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { BookDetailsPage } from './book-details';
-import { ExpandableComponent } from './../../components/expandable/expandable';
-import { BooksimilarsComponent } from '../../components/booksimilars/booksimilars';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
     BookDetailsPage,
-    ExpandableComponent,
-    BooksimilarsComponent
   ],
   imports: [
     IonicPageModule.forChild(BookDetailsPage),
+    ComponentsModule,
   ],
 })
 export class BookDetailsPageModule { }
