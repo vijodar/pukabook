@@ -2,18 +2,22 @@ import { UserDBProvider } from './../../providers/userdb/userdb';
 import { ErrorDialogProvider } from './../../providers/error-dialog/error-dialog';
 import { User } from './../../model/user';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
-import { Component } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { RestClientProvider } from '../../providers/rest-client/restClient';
-import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { HasherProvider } from '../../providers/hasher/hasher';
-import sha1 from 'js-sha1'
+import { Platform, NavController } from 'ionic-angular';
+import { StartPage } from '../../pages/start/start';
+import sha1 from 'js-sha1';
 
 @Component({
   selector: 'signin',
   templateUrl: 'signin.html'
 })
 export class SigninComponent implements OnHttpResponse {
+
+  @Input()
+  private navCtrl: NavController
 
   //region PRIVATE_VARIABLES
   private showPwd: boolean = false
@@ -29,8 +33,8 @@ export class SigninComponent implements OnHttpResponse {
   //endregion PUBLIC_VARIABLES
 
   //region CONST
-  constructor(public rjs: RestClientProvider,
-    public storage: Storage,
+  constructor(
+    public rjs: RestClientProvider,
     public translate: TranslateService,
     public dialogError: ErrorDialogProvider,
     public userdb: UserDBProvider,
@@ -42,14 +46,12 @@ export class SigninComponent implements OnHttpResponse {
 
   //region ONHTTPRESPONSE
   onDataReceived(data) {
-    console.log(data)
     var result = data.result
     if (result.auth) {
-      console.log("Signin");
       var user: User = <User>result.userinfo
       user.token = result.t
-      this.userdb.removeUser()
       this.userdb.addUser(user)
+      this.navCtrl.setRoot(StartPage, {}, { animate: true, direction: 'forward' });
     } else {
       this.onErrorReceivingData(1)
     }
@@ -62,7 +64,6 @@ export class SigninComponent implements OnHttpResponse {
   //region PUBLIC_METHODS
   public eventHandler(keyCode) {
     if (keyCode.keyCode == 13) {
-      this.showHidePassword()
       this.signInButton()
     }
   }
@@ -79,9 +80,6 @@ export class SigninComponent implements OnHttpResponse {
   }
 
   public signInButton() {
-    // console.log(this.hasher.encrypt(this.signinEmail),
-    //   this.hasher.decrypt("U2FsdGVkX18112X1bpPYhYbPpstfad/AccoQOZMU/KI="));
-
     if (this.checkEmailField() && this.checkPassField()) {
       var userpass = btoa(this.hasher.encrypt(this.signinEmail) + ":" + sha1(this.signinPass))
       var header = "Basic " + userpass
@@ -94,6 +92,7 @@ export class SigninComponent implements OnHttpResponse {
   private starter() {
     this.signinEmail = ""
     this.signinPass = ""
+    this.userdb.removeUser()
   }
 
   private checkEmailField(): boolean {
