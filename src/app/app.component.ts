@@ -12,19 +12,11 @@ import { LoginPage } from './../pages/login/login';
 export class MyApp {
     rootPage: any = LoginPage;
 
-    public pages: Array<{title: string, component: any}>;
-
     constructor(private translate: TranslateService, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
         platform.ready().then(() => {
-            statusBar.overlaysWebView(true);
             splashScreen.hide();
         });
         this.initTranslate();
-
-        // this.pages = [
-        //     { title: 'Home', component: HomePage },
-        //     { title: 'List', component: ListPage }
-        // ];
     }
 
     initTranslate() {
@@ -35,7 +27,6 @@ export class MyApp {
         } else {
             this.translate.use('en');
         }
-
     }
 }
 
