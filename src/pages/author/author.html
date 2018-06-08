@@ -1,12 +1,18 @@
 <ion-header>
   <ion-navbar color="purple">
-    <ion-title text-nowrap>{{author.first}} {{author.last}}</ion-title>
+    <ion-title class="titleicon" style="display:inline-block" text-nowrap>{{author.first}} {{author.last}}</ion-title>
     <ion-buttons end>
-      <img src="https://python-server-vicjod.c9users.io/images/authors?image={{author.photo}}" width="40px"
-        height="40px"/>
+      <img class='nav-avatar' src="https://python-server-vicjod.c9users.io/images/authors?image={{author.photo}}" />
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <div padding>
+    {{author.biography}}
+  </div>
+
+  <expandable [expanded]="false" [buttonText]="knownForStr">
+    <books-grid [books]="books" [launchFromRoot]="true"></books-grid>
+  </expandable>
 </ion-content>
