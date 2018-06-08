@@ -23,5 +23,6 @@
     "BOOK_DETAILS_READ": "Read",
     "BOOK_DETAILS_BY": "by",
     "BOOK_DETAILS_SYNOPSIS": "Synopsis",
-    "BOOK_DETAILS_SIMILAR": "Similar"
+    "BOOK_DETAILS_SIMILAR": "Similar",
+    "AUTHOR_DETAILS_KNOWN_FOR": "Known for"
 }
