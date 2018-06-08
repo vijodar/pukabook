@@ -12,7 +12,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
-import { Platform } from 'ionic-angular';
+import { Platform, NavController, LoadingController } from 'ionic-angular';
 
 
 @Component({
@@ -37,12 +37,14 @@ export class SigninComponent implements OnHttpResponse {
 
   //region CONST
   constructor(public rjs: RestClientProvider,
+    public navCtrl: NavController,
     public storage: Storage,
     public translate: TranslateService,
+    public loadingCtrl: LoadingController,
     public dialogError: ErrorDialogProvider,
     public userdb: UserDBProvider,
     public hasher: HasherProvider,
-    private afAuth: AngularFireAuth, 
+    private afAuth: AngularFireAuth,
     private gplus: GooglePlus,
     private platform: Platform) {
 
@@ -100,7 +102,26 @@ export class SigninComponent implements OnHttpResponse {
   }
 
   public loginUser(): void {
-    this.nativeGoogleLogin();
+    let nav = this.navCtrl;
+    let env = this;
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    this.gplus.login({
+      'scopes': '', 
+      'webClientId': '627097748993-59bn17d192rgm62n13q8ti48h2qh20lm.apps.googleusercontent.com', 
+      'offline': true
+    })
+      .then(function (user) {
+        loading.dismiss();
+
+        console.log(user.displayName, user.email, user.imageUrl);
+        
+      }, function (error) {
+        loading.dismiss();
+      });
+    // this.nativeGoogleLogin();
   }
 
   public singOut() {
@@ -113,7 +134,7 @@ export class SigninComponent implements OnHttpResponse {
   //region PRIVATE_METHODS
   private starter() {
     this.userProfile = this.afAuth.authState;
-    
+
     this.signinEmail = ""
     this.signinPass = ""
   }
@@ -142,16 +163,16 @@ export class SigninComponent implements OnHttpResponse {
 
   private async nativeGoogleLogin(): Promise<void> {
     try {
-  
+
       const gplusUser = await this.gplus.login({
         'webClientId': '627097748993-59bn17d192rgm62n13q8ti48h2qh20lm.apps.googleusercontent.com',
         'offline': true,
-        'scopes': 'yusaso97@gmail.com'
+        'scopes': ''
       })
-  
+
       return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
-  
-    } catch(err) {
+
+    } catch (err) {
       console.log(err)
     }
   }
