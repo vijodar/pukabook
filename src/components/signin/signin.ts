@@ -7,7 +7,13 @@ import { RestClientProvider } from '../../providers/rest-client/restClient';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { HasherProvider } from '../../providers/hasher/hasher';
-import sha1 from 'js-sha1'
+import sha1 from 'js-sha1';
+import { GooglePlus } from '@ionic-native/google-plus';
+import * as firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
+import { Platform } from 'ionic-angular';
+
 
 @Component({
   selector: 'signin',
@@ -16,7 +22,8 @@ import sha1 from 'js-sha1'
 export class SigninComponent implements OnHttpResponse {
 
   //region PRIVATE_VARIABLES
-  private showPwd: boolean = false
+  private showPwd: boolean = false;
+  // Initialize Firebase
   //endregion PRIVATE_VARIABLES
 
   //region PUBLIC_VARIABLES
@@ -25,7 +32,7 @@ export class SigninComponent implements OnHttpResponse {
 
   public signinEmail: string
   public signinPass: string
-
+  public userProfile: Observable<firebase.User>;
   //endregion PUBLIC_VARIABLES
 
   //region CONST
@@ -34,7 +41,10 @@ export class SigninComponent implements OnHttpResponse {
     public translate: TranslateService,
     public dialogError: ErrorDialogProvider,
     public userdb: UserDBProvider,
-    public hasher: HasherProvider) {
+    public hasher: HasherProvider,
+    private afAuth: AngularFireAuth, 
+    private gplus: GooglePlus,
+    private platform: Platform) {
 
     this.starter()
   }
@@ -88,10 +98,22 @@ export class SigninComponent implements OnHttpResponse {
       this.rjs.doRequest("POST", "login", header, this)
     }
   }
+
+  public loginUser(): void {
+    this.nativeGoogleLogin();
+  }
+
+  public singOut() {
+    this.afAuth.auth.signOut();
+    this.gplus.logout();
+  }
+
   //endregion PUBLIC_METHODS
 
   //region PRIVATE_METHODS
   private starter() {
+    this.userProfile = this.afAuth.authState;
+    
     this.signinEmail = ""
     this.signinPass = ""
   }
@@ -116,6 +138,22 @@ export class SigninComponent implements OnHttpResponse {
       this.dialogError.showErrorDialog(4)
     }
     return false
+  }
+
+  private async nativeGoogleLogin(): Promise<void> {
+    try {
+  
+      const gplusUser = await this.gplus.login({
+        'webClientId': '627097748993-59bn17d192rgm62n13q8ti48h2qh20lm.apps.googleusercontent.com',
+        'offline': true,
+        'scopes': 'yusaso97@gmail.com'
+      })
+  
+      return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
+  
+    } catch(err) {
+      console.log(err)
+    }
   }
   //endregion PRIVATE_METHODS
 }

@@ -11,6 +11,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 //endregion ANGULAR
 
 //region NGX_TRANSLATE
@@ -31,12 +33,23 @@ import { RestClientProvider } from '../providers/rest-client/restClient';
 import { ErrorDialogProvider } from '../providers/error-dialog/error-dialog';
 import { UserDBProvider } from '../providers/userdb/userdb';
 import { HasherProvider } from '../providers/hasher/hasher';
+import { GooglePlus } from '@ionic-native/google-plus';
 //endregion PROVIDERS
 
 //region COMPONENTS
 import { SigninComponent } from '../components/signin/signin';
 import { SignupComponent } from '../components/signup/signup';
 //endregion COMPONENTS
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC-dp0BeYX3yHp1aXnjojLsuCfU2oE0UEg",
+  authDomain: "pukabook-3f5ec.firebaseapp.com",
+  databaseURL: "https://pukabook-3f5ec.firebaseio.com",
+  projectId: "pukabook-3f5ec",
+  storageBucket: "pukabook-3f5ec.appspot.com",
+  messagingSenderId: "627097748993"
+};
 
 @NgModule({
   declarations: [
@@ -50,6 +63,8 @@ import { SignupComponent } from '../components/signup/signup';
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig), // <-- firebase here
+    AngularFireAuthModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -57,6 +72,7 @@ import { SignupComponent } from '../components/signup/signup';
         deps: [HttpClient]
       }
     }),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -72,6 +88,7 @@ import { SignupComponent } from '../components/signup/signup';
     UserDBProvider,
     HasherProvider,
     SQLite,
+    GooglePlus,
   ]
 })
 export class AppModule { }
