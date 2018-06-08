@@ -5,6 +5,7 @@ import { RestClientProvider } from '../../providers/rest-client/restClient'
 import { SigninComponent } from './../../components/signin/signin';
 import { SignupComponent } from '../../components/signup/signup';
 import { TranslateService } from '@ngx-translate/core';
+import { StatusBar } from '@ionic-native/status-bar';
 
 @Component({
   selector: 'page-login',
@@ -35,7 +36,8 @@ export class LoginPage {
   //region CONST
   constructor(public navCtrl: NavController,
     public rjs: RestClientProvider,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private statusBar: StatusBar) {
 
     this.starter()
   }
@@ -43,6 +45,9 @@ export class LoginPage {
 
   //region PRIVATE_METHODS
   private starter() {
+    this.statusBar.styleLightContent()
+    this.statusBar.overlaysWebView(true);
+
     this.signinStatus = "signinShow"
     this.signupStatus = "signupHide"
 
