@@ -24,6 +24,7 @@ import { SQLite } from '@ionic-native/sqlite';
 
 //region PAGES
 import { LoginPage } from '../pages/login/login';
+import { StartPage } from '../pages/start/start';
 //endregion PAGES
 
 //region PROVIDERS
@@ -38,10 +39,17 @@ import { SigninComponent } from '../components/signin/signin';
 import { SignupComponent } from '../components/signup/signup';
 //endregion COMPONENTS
 
+//region PAGE_MODULES
+import { HomePageModule } from '../pages/home/home.module';
+import { ExplorePageModule } from '../pages/explore/explore.module';
+import { BookDetailsPageModule } from '../pages/book-details/book-details.module';
+//endregion PAGE_MODULES
+
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
+    StartPage,
     SigninComponent,
     SignupComponent,
   ],
@@ -57,11 +65,15 @@ import { SignupComponent } from '../components/signup/signup';
         deps: [HttpClient]
       }
     }),
+    HomePageModule,
+    ExplorePageModule,
+    BookDetailsPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LoginPage
+    LoginPage,
+    StartPage,
   ],
   providers: [
     StatusBar,
