@@ -34,15 +34,12 @@ import { UserDBProvider } from '../providers/userdb/userdb';
 import { HasherProvider } from '../providers/hasher/hasher';
 //endregion PROVIDERS
 
-//region COMPONENTS
-import { SigninComponent } from '../components/signin/signin';
-import { SignupComponent } from '../components/signup/signup';
-//endregion COMPONENTS
-
 //region PAGE_MODULES
 import { HomePageModule } from '../pages/home/home.module';
 import { ExplorePageModule } from '../pages/explore/explore.module';
 import { BookDetailsPageModule } from '../pages/book-details/book-details.module';
+import { ComponentsModule } from '../components/components.module';
+import { AuthorPageModule } from '../pages/author/author.module';
 //endregion PAGE_MODULES
 
 @NgModule({
@@ -50,8 +47,6 @@ import { BookDetailsPageModule } from '../pages/book-details/book-details.module
     MyApp,
     LoginPage,
     StartPage,
-    SigninComponent,
-    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +63,8 @@ import { BookDetailsPageModule } from '../pages/book-details/book-details.module
     HomePageModule,
     ExplorePageModule,
     BookDetailsPageModule,
+    AuthorPageModule,
+    ComponentsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
