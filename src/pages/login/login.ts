@@ -26,12 +26,10 @@ export class LoginPage {
 
   public signinStatus: string
   public signupStatus: string
+  
+  public btnSwitchSignInString: string
+  public btnSwitchSignUpString: string
   //endregion PUBLIC_VARIABLES
-
-  //region PRIVATE_VARIABLES
-  private btnSwitchSignInString: string
-  private btnSwitchSignUpString: string
-  //endregion PRIVATE_VARIABLES
 
   //region CONST
   constructor(public navCtrl: NavController,
