@@ -1,8 +1,8 @@
 import { Book } from './../../model/book';
 import { UserDBProvider } from './../../providers/userdb/userdb';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Refresher } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Refresher, Content } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { RestClientProvider } from '../../providers/rest-client/restClient';
 
@@ -13,6 +13,8 @@ import { RestClientProvider } from '../../providers/rest-client/restClient';
 })
 export class ExplorePage implements OnHttpResponse {
 
+  @ViewChild(Content) content: Content;
+
   //region CONSTANTS
   private translateStrings = {
     "EXPLORE_TITLE": "EXPLORE_TITLE"
@@ -21,6 +23,7 @@ export class ExplorePage implements OnHttpResponse {
 
   //region PUBLIC_VARIABLES
   public books: Book[]
+  public showSBar: boolean
   //endregion PUBLIC_VARIABLES
 
   //region PUBLIC_METHODS
@@ -61,6 +64,8 @@ export class ExplorePage implements OnHttpResponse {
 
   //region PRIVATE_METHODS
   private starter() {
+    this.showSBar = false
+
     this.translate.get(this.translateStrings.EXPLORE_TITLE)
       .subscribe(value => { this.title = value })
 
@@ -81,6 +86,10 @@ export class ExplorePage implements OnHttpResponse {
       })
   }
 
+  public showHideSearchBar() {
+    this.showSBar = !this.showSBar
+    this.content.resize()
+  }
   //endregion PUBLIC_METHODS
 
 }

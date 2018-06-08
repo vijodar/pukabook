@@ -7,11 +7,20 @@
     <ion-title>{{ title }}</ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="showHideSearchBar()">
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
+
+  <ion-toolbar *ngIf="showSBar" no-border-top color="purple">
+    <ion-searchbar placeholder="Filter Items"></ion-searchbar>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
