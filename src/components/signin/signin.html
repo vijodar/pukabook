@@ -30,18 +30,6 @@
   <div class="spacer" style="height:25px;"></div>
 
   <!-- BUTTON GOOGLE+ -->
-  <button ion-button block color="danger" (click)="loginUser()">
-    <ion-icon name="logo-googleplus"></ion-icon>
-    {{ 'SIGN_IN_GOOGLE'  | translate }}
-  </button>
-
-  <div *ngIf="(user | async) || {} as user">
-    <div *ngIf="user.uid">
-      {{user.user}}
-      
-    <button ion-button (click)="singOut()">
-        Signout
-      </button>
-    </div>
-  </div>
+  <google-login></google-login>
+  
 </div>

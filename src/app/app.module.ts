@@ -39,6 +39,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 //region COMPONENTS
 import { SigninComponent } from '../components/signin/signin';
 import { SignupComponent } from '../components/signup/signup';
+import { GoogleLoginComponent} from '../components/google-login/google-login';
 //endregion COMPONENTS
 
 
@@ -57,6 +58,7 @@ const firebaseConfig = {
     LoginPage,
     SigninComponent,
     SignupComponent,
+    GoogleLoginComponent,
   ],
   imports: [
     BrowserModule,

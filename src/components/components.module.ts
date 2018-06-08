@@ -15,12 +15,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 //imports COMPONENTS
 import { SigninComponent } from './signin/signin';
 import { SignupComponent } from './signup/signup';
+import { GoogleLoginComponent } from './google-login/google-login';
 //endimports COMPONENTS
 
 @NgModule({
 	declarations: [
 		SigninComponent,
 		SignupComponent,
+    GoogleLoginComponent,
 	],
 	imports: [
 		IonicModule,
@@ -35,6 +37,7 @@ import { SignupComponent } from './signup/signup';
 	exports: [
 		SigninComponent,
 		SignupComponent,
+    GoogleLoginComponent,
 	]
 })
 export class ComponentsModule { }

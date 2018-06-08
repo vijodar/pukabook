@@ -8,11 +8,6 @@ import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { HasherProvider } from '../../providers/hasher/hasher';
 import sha1 from 'js-sha1';
-import { GooglePlus } from '@ionic-native/google-plus';
-import * as firebase from 'firebase';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/Observable';
-import { Platform, NavController, LoadingController } from 'ionic-angular';
 
 
 @Component({
@@ -32,21 +27,15 @@ export class SigninComponent implements OnHttpResponse {
 
   public signinEmail: string
   public signinPass: string
-  public userProfile: Observable<firebase.User>;
   //endregion PUBLIC_VARIABLES
 
   //region CONST
   constructor(public rjs: RestClientProvider,
-    public navCtrl: NavController,
     public storage: Storage,
     public translate: TranslateService,
-    public loadingCtrl: LoadingController,
     public dialogError: ErrorDialogProvider,
     public userdb: UserDBProvider,
-    public hasher: HasherProvider,
-    private afAuth: AngularFireAuth,
-    private gplus: GooglePlus,
-    private platform: Platform) {
+    public hasher: HasherProvider,) {
 
     this.starter()
   }
@@ -101,40 +90,10 @@ export class SigninComponent implements OnHttpResponse {
     }
   }
 
-  public loginUser(): void {
-    let nav = this.navCtrl;
-    let env = this;
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    loading.present();
-    this.gplus.login({
-      'scopes': '', 
-      'webClientId': '627097748993-59bn17d192rgm62n13q8ti48h2qh20lm.apps.googleusercontent.com', 
-      'offline': true
-    })
-      .then(function (user) {
-        loading.dismiss();
-
-        console.log(user.displayName, user.email, user.imageUrl);
-        
-      }, function (error) {
-        loading.dismiss();
-      });
-    // this.nativeGoogleLogin();
-  }
-
-  public singOut() {
-    this.afAuth.auth.signOut();
-    this.gplus.logout();
-  }
-
   //endregion PUBLIC_METHODS
 
   //region PRIVATE_METHODS
   private starter() {
-    this.userProfile = this.afAuth.authState;
-
     this.signinEmail = ""
     this.signinPass = ""
   }
@@ -159,22 +118,6 @@ export class SigninComponent implements OnHttpResponse {
       this.dialogError.showErrorDialog(4)
     }
     return false
-  }
-
-  private async nativeGoogleLogin(): Promise<void> {
-    try {
-
-      const gplusUser = await this.gplus.login({
-        'webClientId': '627097748993-59bn17d192rgm62n13q8ti48h2qh20lm.apps.googleusercontent.com',
-        'offline': true,
-        'scopes': ''
-      })
-
-      return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
-
-    } catch (err) {
-      console.log(err)
-    }
   }
   //endregion PRIVATE_METHODS
 }
