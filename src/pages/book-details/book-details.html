@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="purple">
+    <ion-title text-nowrap>{{book.bname}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="ios-bookmark-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 id="test">
+        <img src="https://python-server-vicjod.c9users.io/images/books?image={{book.photo}}" width="200em" height="250em" />
+      </ion-col>
+      <ion-col col-6 id="test2" text-center>
+        <p padding>
+          {{book.bname}}
+        </p>
+        <div padding>
+          {{by}}
+          <button ion-button clear color="positive" text-wrap>
+            {{author.first}} {{author.last}}
+          </button>
+        </div>
+        <div padding>
+          <button ion-button color="purple" block>
+            {{read}}
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <expandable [expanded]="true" [buttonText]="synopsis">
+    {{book.synopsis}}
+  </expandable>
+  <expandable [expanded]="false" [buttonText]="similar">
+    <booksimilars [books]="books"></booksimilars>
+  </expandable>
+</ion-content>

@@ -15,12 +15,18 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 //imports COMPONENTS
 import { SigninComponent } from './signin/signin';
 import { SignupComponent } from './signup/signup';
+import { BooksGridComponent } from './books-grid/books-grid';
+import { ExpandableComponent } from './expandable/expandable';
+import { BooksimilarsComponent } from './booksimilars/booksimilars';
 //endimports COMPONENTS
 
 @NgModule({
 	declarations: [
 		SigninComponent,
 		SignupComponent,
+    BooksGridComponent,
+    ExpandableComponent,
+    BooksimilarsComponent,
 	],
 	imports: [
 		IonicModule,
@@ -35,6 +41,9 @@ import { SignupComponent } from './signup/signup';
 	exports: [
 		SigninComponent,
 		SignupComponent,
+    BooksGridComponent,
+    ExpandableComponent,
+    BooksimilarsComponent,
 	]
 })
 export class ComponentsModule { }

@@ -1,0 +1,9 @@
+<ion-list>
+  <ion-item *ngFor="let book of books" (click)="viewBookDetails(book.id)">
+    <img src="https://python-server-vicjod.c9users.io/images/books?image={{book.photo}}"/>
+    <div>
+      {{book.bname}}
+      {{book.first}} {{book.last}}
+    </div>
+  </ion-item>
+</ion-list>
