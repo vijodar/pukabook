@@ -24,30 +24,19 @@ import { BooksimilarsComponent } from './booksimilars/booksimilars';
 	declarations: [
 		SigninComponent,
 		SignupComponent,
-    BooksGridComponent,
-    ExpandableComponent,
-    BooksimilarsComponent,
+		BooksGridComponent,
+		ExpandableComponent,
+		BooksimilarsComponent,
 	],
 	imports: [
 		IonicModule,
-		TranslateModule.forRoot({
-			loader: {
-			  provide: TranslateLoader,
-			  useFactory: (HttpLoaderFactory),
-			  deps: [HttpClient]
-			}
-		  }),
 	],
 	exports: [
 		SigninComponent,
 		SignupComponent,
-    BooksGridComponent,
-    ExpandableComponent,
-    BooksimilarsComponent,
+		BooksGridComponent,
+		ExpandableComponent,
+		BooksimilarsComponent,
 	]
 })
 export class ComponentsModule { }
-
-export function HttpLoaderFactory(http: HttpClient) {
-	return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-  }
