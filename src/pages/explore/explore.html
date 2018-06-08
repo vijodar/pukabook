@@ -15,5 +15,8 @@
 </ion-header>
 
 <ion-content padding>
-  <books-grid [books]="books"></books-grid>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <books-grid [books]="books" [launchFromRoot]="true"></books-grid>
 </ion-content>

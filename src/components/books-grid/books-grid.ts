@@ -1,5 +1,5 @@
 import { Author } from './../../model/author';
-import { App } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
 import { UserDBProvider } from './../../providers/userdb/userdb';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
 import { RestClientProvider } from './../../providers/rest-client/restClient';
@@ -16,6 +16,12 @@ export class BooksGridComponent implements OnHttpResponse {
   //region INPUTS
   @Input()
   books: Book[]
+
+  @Input()
+  launchFromRoot: boolean
+
+  @Input()
+  emptyPageStash: boolean
   //endregion INPUTS
 
   //region PRIVATE_VARIABLES
@@ -30,10 +36,23 @@ export class BooksGridComponent implements OnHttpResponse {
       this.userdb.modifyUserToken(result.t)
       var book: Book = result.book
       var author: Author = result.author
-      this.appCtrl.getRootNavs()[0].push(BookDetailsPage, {
-        'book': book,
-        'author': author
-      })
+
+      if (this.launchFromRoot) {
+        this.appCtrl.getRootNavs()[0].push(BookDetailsPage, {
+          'book': book,
+          'author': author
+        })
+      } else if (this.emptyPageStash) {
+        let currentIndex = this.navCtrl.getActive().index;
+        this.navCtrl.push(BookDetailsPage, {
+          'book': book,
+          'author': author
+        }).then(() => {
+          this.navCtrl.remove(currentIndex);
+        })
+      } else {
+
+      }
 
     } else {
       this.userdb.getUser()
@@ -54,7 +73,8 @@ export class BooksGridComponent implements OnHttpResponse {
   constructor(
     private rjs: RestClientProvider,
     private userdb: UserDBProvider,
-    private appCtrl: App) { }
+    private appCtrl: App,
+    private navCtrl: NavController) { }
   //endregion CONST
 
   //region PRIVATE_METHODS

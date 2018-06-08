@@ -21,7 +21,7 @@
         </p>
         <div padding>
           {{by}}
-          <button ion-button clear color="positive" text-wrap>
+          <button ion-button clear color="positive" text-wrap (click)="viewAuthorDetails()">
             {{author.first}} {{author.last}}
           </button>
         </div>
@@ -38,6 +38,6 @@
     {{book.synopsis}}
   </expandable>
   <expandable [expanded]="false" [buttonText]="similar">
-    <booksimilars [books]="books"></booksimilars>
+    <books-grid [books]="books" [emptyPageStash]="true"></books-grid>
   </expandable>
 </ion-content>

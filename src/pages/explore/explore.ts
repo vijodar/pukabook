@@ -2,10 +2,9 @@ import { Book } from './../../model/book';
 import { UserDBProvider } from './../../providers/userdb/userdb';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Refresher } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { RestClientProvider } from '../../providers/rest-client/restClient';
-import { BooksGridComponent } from '../../components/books-grid/books-grid';
 
 @IonicPage()
 @Component({
@@ -68,12 +67,20 @@ export class ExplorePage implements OnHttpResponse {
     this.getAllBooks()
   }
 
-  private getAllBooks() {
+  private doRefresh(refresher: Refresher) {
+    this.getAllBooks()
+    refresher.complete();
+  }
+  //endregion PRIVATE_METHODS
+
+  //region PUBLIC_METHODS
+  public getAllBooks() {
     this.userdb.getUser()
       .then(value => {
         this.rjs.doRequest("POST", "books/explore", "Bearer " + value.token, this)
       })
   }
-  //endregion PRIVATE_METHODS
+
+  //endregion PUBLIC_METHODS
 
 }
