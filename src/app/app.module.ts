@@ -32,6 +32,7 @@ import { RestClientProvider } from '../providers/rest-client/restClient';
 import { ErrorDialogProvider } from '../providers/error-dialog/error-dialog';
 import { UserDBProvider } from '../providers/userdb/userdb';
 import { HasherProvider } from '../providers/hasher/hasher';
+import {PhotoViewer} from '@ionic-native/photo-viewer';
 //endregion PROVIDERS
 
 //region PAGE_MODULES
@@ -80,6 +81,7 @@ import { AuthorPageModule } from '../pages/author/author.module';
     ErrorDialogProvider,
     UserDBProvider,
     HasherProvider,
+    PhotoViewer,
     SQLite,
   ]
 })
