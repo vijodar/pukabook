@@ -6,6 +6,7 @@ import { UserDBProvider } from '../../providers/userdb/userdb';
 import { OnHttpResponse } from '../../interfaces/onHttpResponse';
 import { Book } from '../../model/book';
 import { TranslateService } from '@ngx-translate/core';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @IonicPage()
 @Component({
@@ -33,7 +34,8 @@ export class AuthorPage implements OnHttpResponse {
     public navParams: NavParams,
     private rjs: RestClientProvider,
     private userdb: UserDBProvider,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private photoViewer: PhotoViewer) {
 
     this.starter()
   }
@@ -73,4 +75,10 @@ export class AuthorPage implements OnHttpResponse {
       })
   }
   //endregion PRIVATE_METHODS
+
+  //region PUBLIC_METHODS
+  public viewPhotoAuthor() {
+    this.photoViewer.show('https://python-server-vicjod.c9users.io/images/authors?image=' + this.author.photo)
+  }
+  //endregion PUBLIC_METHODS
 }

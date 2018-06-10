@@ -2,7 +2,9 @@
   <ion-navbar color="purple">
     <ion-title class="titleicon" style="display:inline-block" text-nowrap>{{author.first}} {{author.last}}</ion-title>
     <ion-buttons end>
-      <img class='nav-avatar' src="https://python-server-vicjod.c9users.io/images/authors?image={{author.photo}}" />
+      <button ion-button (click)="viewPhotoAuthor()" block color="purple">
+        <img class='nav-avatar' src="https://python-server-vicjod.c9users.io/images/authors?image={{author.photo}}"/>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
