@@ -24,5 +24,14 @@
     "BOOK_DETAILS_BY": "by",
     "BOOK_DETAILS_SYNOPSIS": "Synopsis",
     "BOOK_DETAILS_SIMILAR": "Similar",
-    "AUTHOR_DETAILS_KNOWN_FOR": "Known for"
+    "AUTHOR_DETAILS_KNOWN_FOR": "Known for",
+    "EXPLORE_SEARCHBAR_PLACEHOLDER": "Search",
+    "EXPLORE_FILTER_NAME": "Name",
+    "EXPLORE_FILTER_GENRE": "Genre",
+    "EXPLORE_FILTER_AUTHOR": "Author",
+    "EXPLORE_FILTER_COLLECTION": "Collection",
+    "EXPLORE_FILTER_TITLE": "Filters",
+    "EXPLORE_FILTER_CANCEL": "Cancel",
+    "EXPLORE_FILTER_OK": "Ok",
+    "ERROR_MSG_7": "The search has not been successful"
 }
