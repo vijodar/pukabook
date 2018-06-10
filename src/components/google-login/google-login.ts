@@ -3,7 +3,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
-import { Platform, NavController, LoadingController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'google-login',
@@ -17,15 +17,11 @@ export class GoogleLoginComponent {
   constructor(
     private afAuth: AngularFireAuth,
     private gplus: GooglePlus,
-    public navCtrl: NavController,
-    public loadingCtrl: LoadingController,
-    private platform: Platform) 
+    public loadingCtrl: LoadingController,) 
   {
   }
 
   public loginUser(): void {
-    let nav = this.navCtrl;
-    let env = this;
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -43,7 +39,6 @@ export class GoogleLoginComponent {
       }, function (error) {
         loading.dismiss();
       });
-    // this.nativeGoogleLogin();
   }
   
   public singOut() {
