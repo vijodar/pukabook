@@ -17,7 +17,8 @@ import { SigninComponent } from './signin/signin';
 import { SignupComponent } from './signup/signup';
 import { BooksGridComponent } from './books-grid/books-grid';
 import { ExpandableComponent } from './expandable/expandable';
-import { BooksimilarsComponent } from './booksimilars/booksimilars';
+import { SearchbarBooksComponent } from './searchbar-books/searchbar-books';
+import { ButtonReadlaterComponent } from './button-readlater/button-readlater';
 //endimports COMPONENTS
 
 @NgModule({
@@ -26,7 +27,8 @@ import { BooksimilarsComponent } from './booksimilars/booksimilars';
 		SignupComponent,
 		BooksGridComponent,
 		ExpandableComponent,
-		BooksimilarsComponent,
+		SearchbarBooksComponent,
+    ButtonReadlaterComponent,
 	],
 	imports: [
 		IonicModule,
@@ -36,7 +38,8 @@ import { BooksimilarsComponent } from './booksimilars/booksimilars';
 		SignupComponent,
 		BooksGridComponent,
 		ExpandableComponent,
-		BooksimilarsComponent,
+		SearchbarBooksComponent,
+    ButtonReadlaterComponent,
 	]
 })
 export class ComponentsModule { }

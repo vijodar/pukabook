@@ -1,0 +1,18 @@
+<ion-toolbar no-border-top color="purple">
+  <ion-searchbar #words placeholder="{{searchPlaceholder}}" (keyup.enter)="search(words.value)"></ion-searchbar>
+  <ion-buttons end>
+    <button ion-button icon-only *ngIf="showFilterBtn" (click)="openFilterSelect()">
+      <ion-icon name="settings"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-item hidden>
+  <ion-label>{{filterTitle}}</ion-label>
+  <ion-select [(ngModel)]="filter" okText="{{filterOk}}" cancelText="{{filterCancel}}" #selectFilter>
+    <ion-option value="name">{{filterName}}</ion-option>
+    <ion-option value="genre">{{filterGenre}}</ion-option>
+    <ion-option value="author">{{filterAuthor}}</ion-option>
+    <ion-option value="collection">{{filterCollection}}</ion-option>
+  </ion-select>
+</ion-item>
