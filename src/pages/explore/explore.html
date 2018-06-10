@@ -13,14 +13,8 @@
     </ion-buttons>
   </ion-navbar>
 
-  <ion-toolbar *ngIf="showSBar" no-border-top color="purple">
-    <ion-searchbar placeholder="Filter Items"></ion-searchbar>
-    <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="settings"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
+  <searchbar-books *ngIf="showSBar" [showFilterBtn]="true"
+    [url]="urlSearch" [onSearchBooks]="this" ></searchbar-books>
 </ion-header>
 
 <ion-content padding>

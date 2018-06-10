@@ -1,8 +1,9 @@
+import { OnSearchBooksResponse } from './../../interfaces/onSearchBooksResponse';
 import { Book } from './../../model/book';
 import { UserDBProvider } from './../../providers/userdb/userdb';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Refresher, Content } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Refresher, Content, Select } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { RestClientProvider } from '../../providers/rest-client/restClient';
 
@@ -11,23 +12,26 @@ import { RestClientProvider } from '../../providers/rest-client/restClient';
   selector: 'page-explore',
   templateUrl: 'explore.html',
 })
-export class ExplorePage implements OnHttpResponse {
+export class ExplorePage implements OnHttpResponse, OnSearchBooksResponse {
 
+  //region VIEW_CHILD
   @ViewChild(Content) content: Content;
+
+  @ViewChild('selectFilter') selectRef: Select;
+  //endregion VIEW_CHILD
 
   //region CONSTANTS
   private translateStrings = {
-    "EXPLORE_TITLE": "EXPLORE_TITLE"
+    "EXPLORE_TITLE": "EXPLORE_TITLE",
   }
   //endregion CONSTANTS
 
   //region PUBLIC_VARIABLES
   public books: Book[]
   public showSBar: boolean
-  //endregion PUBLIC_VARIABLES
-
-  //region PUBLIC_METHODS
+  public filter: string
   public title: string
+  public urlSearch: string
   //endregion PUBLIC_METHODS
 
   //region ONHTTPRESPONSE
@@ -51,6 +55,12 @@ export class ExplorePage implements OnHttpResponse {
   }
   //endregion ONHTTPRESPONSE
 
+  //region ONSEARCHBOOKSRESPONSE
+  onSearchBooks(books: Book[]) {
+    this.books = books
+  }
+  //ebdregion ONSEARCHBOOKSRESPONSE
+
   //region CONSTRUCTOR
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -65,16 +75,21 @@ export class ExplorePage implements OnHttpResponse {
   //region PRIVATE_METHODS
   private starter() {
     this.showSBar = false
+    this.filter = "name"
+    this.urlSearch = "explore"
 
-    this.translate.get(this.translateStrings.EXPLORE_TITLE)
-      .subscribe(value => { this.title = value })
-
+    this.setTranslateStrings()
     this.getAllBooks()
   }
 
   private doRefresh(refresher: Refresher) {
     this.getAllBooks()
     refresher.complete();
+  }
+
+  private setTranslateStrings() {
+    this.translate.get(this.translateStrings.EXPLORE_TITLE)
+      .subscribe(value => { this.title = value })
   }
   //endregion PRIVATE_METHODS
 
