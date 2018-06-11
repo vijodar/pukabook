@@ -1,4 +1,4 @@
-import { OnSearchBooksResponse } from './../../interfaces/onSearchBooksResponse';
+import { OnGetBooksResponse } from './../../interfaces/onSearchBooksResponse';
 import { Book } from './../../model/book';
 import { UserDBProvider } from './../../providers/userdb/userdb';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
@@ -12,7 +12,7 @@ import { RestClientProvider } from '../../providers/rest-client/restClient';
   selector: 'page-explore',
   templateUrl: 'explore.html',
 })
-export class ExplorePage implements OnHttpResponse, OnSearchBooksResponse {
+export class ExplorePage implements OnHttpResponse, OnGetBooksResponse {
 
   //region VIEW_CHILD
   @ViewChild(Content) content: Content;
@@ -56,7 +56,7 @@ export class ExplorePage implements OnHttpResponse, OnSearchBooksResponse {
   //endregion ONHTTPRESPONSE
 
   //region ONSEARCHBOOKSRESPONSE
-  onSearchBooks(books: Book[]) {
+  onGetBooks(books: Book[]) {
     this.books = books
   }
   //ebdregion ONSEARCHBOOKSRESPONSE

@@ -1,5 +1,5 @@
 import { Book } from "../model/book";
 
-export interface OnSearchBooksResponse {
-    onSearchBooks (books: Book[])
+export interface OnGetBooksResponse {
+    onGetBooks (books: Book[])
 }
