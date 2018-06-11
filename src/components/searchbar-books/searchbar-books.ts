@@ -1,4 +1,4 @@
-import { OnSearchBooksResponse } from './../../interfaces/onSearchBooksResponse';
+import { OnGetBooksResponse } from './../../interfaces/onSearchBooksResponse';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
 import { Component, ViewChild, Input } from '@angular/core';
 import { NavController, NavParams, Select } from 'ionic-angular';
@@ -26,19 +26,19 @@ export class SearchbarBooksComponent implements OnHttpResponse {
   url: string
 
   @Input()
-  onSearchBooks: OnSearchBooksResponse
+  onSearchBooks: OnGetBooksResponse
   //endregion INPUTS
 
   //region CONSTANTS
   private translateStrings = {
-    "EXPLORE_SEARCHBAR_PLACEHOLDER": "EXPLORE_SEARCHBAR_PLACEHOLDER",
-    "EXPLORE_FILTER_NAME": "EXPLORE_FILTER_NAME",
-    "EXPLORE_FILTER_GENRE": "EXPLORE_FILTER_GENRE",
-    "EXPLORE_FILTER_AUTHOR": "EXPLORE_FILTER_AUTHOR",
-    "EXPLORE_FILTER_COLLECTION": "EXPLORE_FILTER_COLLECTION",
-    "EXPLORE_FILTER_TITLE": "EXPLORE_FILTER_TITLE",
-    "EXPLORE_FILTER_CANCEL": "EXPLORE_FILTER_CANCEL",
-    "EXPLORE_FILTER_OK": "EXPLORE_FILTER_OK",
+    "SEARCHBAR_PLACEHOLDER": "SEARCHBAR_PLACEHOLDER",
+    "SEARCHBAR_FILTER_NAME": "SEARCHBAR_FILTER_NAME",
+    "SEARCHBAR_FILTER_GENRE": "SEARCHBAR_FILTER_GENRE",
+    "SEARCHBAR_FILTER_AUTHOR": "SEARCHBAR_FILTER_AUTHOR",
+    "SEARCHBAR_FILTER_COLLECTION": "SEARCHBAR_FILTER_COLLECTION",
+    "SEARCHBAR_FILTER_TITLE": "SEARCHBAR_FILTER_TITLE",
+    "SEARCHBAR_FILTER_CANCEL": "SEARCHBAR_FILTER_CANCEL",
+    "SEARCHBAR_FILTER_OK": "SEARCHBAR_FILTER_OK",
   }
   //endregion CONSTANTS
 
@@ -65,7 +65,7 @@ export class SearchbarBooksComponent implements OnHttpResponse {
     if (result.auth) {
       this.userdb.modifyUserToken(result.t)
       if (result.books) {
-        this.onSearchBooks.onSearchBooks(result.books)
+        this.onSearchBooks.onGetBooks(result.books)
       } else {
         this.onErrorReceivingData(7)
       }
@@ -101,33 +101,31 @@ export class SearchbarBooksComponent implements OnHttpResponse {
     this.filter = "name"
 
     this.setTranslateStrings()
-
-
   }
 
   private setTranslateStrings() {
-    this.translate.get(this.translateStrings.EXPLORE_SEARCHBAR_PLACEHOLDER)
+    this.translate.get(this.translateStrings.SEARCHBAR_PLACEHOLDER)
       .subscribe(value => { this.searchPlaceholder = value })
 
-    this.translate.get(this.translateStrings.EXPLORE_FILTER_NAME)
+    this.translate.get(this.translateStrings.SEARCHBAR_FILTER_NAME)
       .subscribe(value => { this.filterName = value })
 
-    this.translate.get(this.translateStrings.EXPLORE_FILTER_GENRE)
+    this.translate.get(this.translateStrings.SEARCHBAR_FILTER_GENRE)
       .subscribe(value => { this.filterGenre = value })
 
-    this.translate.get(this.translateStrings.EXPLORE_FILTER_AUTHOR)
+    this.translate.get(this.translateStrings.SEARCHBAR_FILTER_AUTHOR)
       .subscribe(value => { this.filterAuthor = value })
 
-    this.translate.get(this.translateStrings.EXPLORE_FILTER_COLLECTION)
+    this.translate.get(this.translateStrings.SEARCHBAR_FILTER_COLLECTION)
       .subscribe(value => { this.filterCollection = value })
 
-    this.translate.get(this.translateStrings.EXPLORE_FILTER_TITLE)
+    this.translate.get(this.translateStrings.SEARCHBAR_FILTER_TITLE)
       .subscribe(value => { this.filterTitle = value })
 
-    this.translate.get(this.translateStrings.EXPLORE_FILTER_CANCEL)
+    this.translate.get(this.translateStrings.SEARCHBAR_FILTER_CANCEL)
       .subscribe(value => { this.filterCancel = value })
 
-    this.translate.get(this.translateStrings.EXPLORE_FILTER_OK)
+    this.translate.get(this.translateStrings.SEARCHBAR_FILTER_OK)
       .subscribe(value => { this.filterOk = value })
   }
   //endregion PRIVATE_METHODS
