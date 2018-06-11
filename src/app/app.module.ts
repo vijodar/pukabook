@@ -41,6 +41,7 @@ import { ExplorePageModule } from '../pages/explore/explore.module';
 import { BookDetailsPageModule } from '../pages/book-details/book-details.module';
 import { ComponentsModule } from '../components/components.module';
 import { AuthorPageModule } from '../pages/author/author.module';
+import { DirectivesModule } from './../directives/directives.module';
 //endregion PAGE_MODULES
 
 @NgModule({
@@ -66,6 +67,7 @@ import { AuthorPageModule } from '../pages/author/author.module';
     BookDetailsPageModule,
     AuthorPageModule,
     ComponentsModule,
+    DirectivesModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
