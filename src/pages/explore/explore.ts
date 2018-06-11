@@ -1,4 +1,4 @@
-import { OnGetBooksResponse } from './../../interfaces/onSearchBooksResponse';
+import { OnGetBooksResponse } from '../../interfaces/onGetBooksResponse';
 import { Book } from './../../model/book';
 import { UserDBProvider } from './../../providers/userdb/userdb';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
