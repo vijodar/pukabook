@@ -2,7 +2,7 @@
   <ion-navbar color="purple">
     <ion-title text-nowrap>{{book.bname}}</ion-title>
     <ion-buttons end>
-      <button-readlater></button-readlater>
+      <button-readlater [idBook]="book.id"></button-readlater>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
