@@ -5,7 +5,6 @@ import { NavController, NavParams, Select } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { UserDBProvider } from '../../providers/userdb/userdb';
 import { RestClientProvider } from '../../providers/rest-client/restClient';
-import { Book } from '../../model/book';
 import { ErrorDialogProvider } from '../../providers/error-dialog/error-dialog';
 
 @Component({
