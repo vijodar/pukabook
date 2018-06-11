@@ -7,13 +7,14 @@ import { Book } from '../../model/book';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthorPage } from '../author/author';
+import { OnGetBooksResponse } from '../../interfaces/onGetBooksResponse';
 
 @IonicPage()
 @Component({
   selector: 'page-book-details',
   templateUrl: 'book-details.html',
 })
-export class BookDetailsPage implements OnHttpResponse {
+export class BookDetailsPage implements OnHttpResponse, OnGetBooksResponse {
 
   //region CONSTANTS
   private translateStrings = {
@@ -40,13 +41,12 @@ export class BookDetailsPage implements OnHttpResponse {
     var result = data.result
     if (result.auth) {
       this.userdb.modifyUserToken(result.t)
-      this.books = result.books
     } else {
       this.userdb.getUser()
         .then(value => {
           var basic = btoa(value.email + ":" + value.pass)
           this.rjs.doRequest("POST", "books/book",
-            "Basic " + basic, this, { bookcode: this.book.id })
+            "Basic " + basic, this)
         })
     }
   }
@@ -54,6 +54,12 @@ export class BookDetailsPage implements OnHttpResponse {
 
   }
   //endregion ONHTTPRESPONSE
+
+  //region ONGETBOOKSRESPONSE
+  onGetBooks(books: Book[]) {
+    this.books = books
+  }
+  //endregion ONGETBOOKSRESPONSE
 
   //region CONST
   constructor(
@@ -90,8 +96,7 @@ export class BookDetailsPage implements OnHttpResponse {
   private getSimilarBooks() {
     this.userdb.getUser()
       .then(value => {
-        this.rjs.doRequest("POST", "books/book", "Bearer " + value.token,
-          this, { bookcode: this.book.id })
+        this.rjs.doRequest("POST", "books/book", "Bearer " + value.token, this)
       })
   }
   //endregion PRIVATE_METHODS

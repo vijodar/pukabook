@@ -1,3 +1,4 @@
+import { OnGetBooksResponse } from '../../interfaces/onGetBooksResponse';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
 import { Component, Input } from '@angular/core';
 import { RestClientProvider } from '../../providers/rest-client/restClient';
@@ -14,6 +15,9 @@ export class ButtonReadlaterComponent implements OnHttpResponse {
   //region INPUTS
   @Input()
   idBook: number
+
+  @Input()
+  onGetBook: OnGetBooksResponse
   //endregion INPUTS
 
   //region CONSTANTS
@@ -39,6 +43,8 @@ export class ButtonReadlaterComponent implements OnHttpResponse {
       this.userdb.modifyUserToken(result.t)
       if (result.isReadLater) {
         this.isReadLater = result.isReadLater
+      } else if (result.books) {
+        this.onGetBook.onGetBooks(result.books)
       } else if (result.addReadLater) {
         this.isReadLater = true
         this.addedBookmark()

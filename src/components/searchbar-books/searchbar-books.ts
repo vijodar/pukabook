@@ -1,4 +1,4 @@
-import { OnGetBooksResponse } from './../../interfaces/onSearchBooksResponse';
+import { OnGetBooksResponse } from '../../interfaces/onGetBooksResponse';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
 import { Component, ViewChild, Input } from '@angular/core';
 import { NavController, NavParams, Select } from 'ionic-angular';
