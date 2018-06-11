@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "627097748993",
+    "firebase_url": "https://pukabook-3f5ec.firebaseio.com",
+    "project_id": "pukabook-3f5ec",
+    "storage_bucket": "pukabook-3f5ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627097748993:android:df0ddd7297e08d5c",
+        "android_client_info": {
+          "package_name": "pukabook.jodar.vicente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627097748993-59bn17d192rgm62n13q8ti48h2qh20lm.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "627097748993-59bn17d192rgm62n13q8ti48h2qh20lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdd5Na8s2cSN2qt837fks4AtDJgklGuew"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

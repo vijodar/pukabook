@@ -89,6 +89,11 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <allow-navigation href="http://172.17.23.197:8101" />
     <allow-navigation href="http://172.17.23.197:8100" />
+    <plugin name="cordova-sqlite-storage" spec="^2.3.2" />
+    <plugin name="cordova-plugin-googleplus" spec="^5.3.0">
+        <variable name="\REVERSED_CLIENT_ID" value="com.googleusercontent.apps.627097748993-lp6rrncr3t1c82svg0gdi51mcl86fkv3" />
+    </plugin>
+    <allow-navigation href="http://192.168.0.103:8100" />
     <engine name="android" spec="7.0.0" />
     <engine name="browser" spec="5.0.3" />
     <plugin name="cordova-sqlite-storage" spec="^2.3.2" />

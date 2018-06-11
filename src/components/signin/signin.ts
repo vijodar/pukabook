@@ -2,11 +2,11 @@ import { UserDBProvider } from './../../providers/userdb/userdb';
 import { ErrorDialogProvider } from './../../providers/error-dialog/error-dialog';
 import { User } from './../../model/user';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RestClientProvider } from '../../providers/rest-client/restClient';
 import { TranslateService } from '@ngx-translate/core';
 import { HasherProvider } from '../../providers/hasher/hasher';
-import { Platform, NavController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { StartPage } from '../../pages/start/start';
 import sha1 from 'js-sha1';
 
@@ -18,7 +18,7 @@ export class SigninComponent implements OnHttpResponse {
 
   //region INPUTS
   @Input()
-  private navCtrl: NavController
+  public navCtrl: NavController
   //endregion INPUTS
 
   //region CONSTANTS
@@ -31,7 +31,8 @@ export class SigninComponent implements OnHttpResponse {
   //endregion CONSTANTS
 
   //region PRIVATE_VARIABLES
-  private showPwd: boolean = false
+  private showPwd: boolean = false;
+  // Initialize Firebase
   //endregion PRIVATE_VARIABLES
   
   //region PUBLIC_VARIABLES
@@ -53,7 +54,7 @@ export class SigninComponent implements OnHttpResponse {
     public translate: TranslateService,
     public dialogError: ErrorDialogProvider,
     public userdb: UserDBProvider,
-    public hasher: HasherProvider) {
+    public hasher: HasherProvider,) {
 
     this.starter()
   }
@@ -66,7 +67,7 @@ export class SigninComponent implements OnHttpResponse {
       var user: User = <User>result.userinfo
       user.token = result.t
       this.userdb.addUser(user)
-      this.navCtrl.setRoot(StartPage, {}, { animate: true, direction: 'forward' });
+      this.navCtrl.setRoot(StartPage, {}, { animate: true, direction: 'forward' })
     } else {
       this.onErrorReceivingData(1)
     }
@@ -101,6 +102,7 @@ export class SigninComponent implements OnHttpResponse {
       this.rjs.doRequest("POST", "login", header, this)
     }
   }
+
   //endregion PUBLIC_METHODS
 
   //region PRIVATE_METHODS

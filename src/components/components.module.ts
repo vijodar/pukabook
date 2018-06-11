@@ -4,13 +4,7 @@ import { IonicModule } from 'ionic-angular';
 
 //imports ANGULAR
 import { NgModule } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 //endimports ANGULAR
-
-//imports NGX_TRANSLATE
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-//endimports NGX_TRANSLATE
 
 //imports COMPONENTS
 import { SigninComponent } from './signin/signin';
@@ -19,6 +13,7 @@ import { BooksGridComponent } from './books-grid/books-grid';
 import { ExpandableComponent } from './expandable/expandable';
 import { SearchbarBooksComponent } from './searchbar-books/searchbar-books';
 import { ButtonReadlaterComponent } from './button-readlater/button-readlater';
+import { GoogleLoginComponent } from './google-login/google-login';
 //endimports COMPONENTS
 
 @NgModule({
@@ -29,6 +24,7 @@ import { ButtonReadlaterComponent } from './button-readlater/button-readlater';
 		ExpandableComponent,
 		SearchbarBooksComponent,
     ButtonReadlaterComponent,
+    GoogleLoginComponent,
 	],
 	imports: [
 		IonicModule,
@@ -40,6 +36,7 @@ import { ButtonReadlaterComponent } from './button-readlater/button-readlater';
 		ExpandableComponent,
 		SearchbarBooksComponent,
     ButtonReadlaterComponent,
+    GoogleLoginComponent,
 	]
 })
 export class ComponentsModule { }
