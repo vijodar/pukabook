@@ -31,7 +31,6 @@ export class BooksGridComponent implements OnHttpResponse {
   //region ONHTTPRESPONSE
   onDataReceived(data: any) {
     var result = data.result
-    console.log(result);
     if (result.auth) {
       this.userdb.modifyUserToken(result.t)
       var book: Book = result.book
