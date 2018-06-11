@@ -7,6 +7,18 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content padding *ngIf="anyPending">
+  <ion-row center>
+    <ion-col text-center>
+      <div>
+        No book read
+      </div>
+      <div padding-bottom>
+        ¯\_(ツ)_/¯
+      </div>
+      <button ion-button color="purple" (click)="goToExplore()">
+        Go to explore
+      </button>
+    </ion-col>
+  </ion-row>
 </ion-content>

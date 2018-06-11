@@ -2,7 +2,7 @@ import { UserDBProvider } from './../../providers/userdb/userdb';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
 import { RestClientProvider } from './../../providers/rest-client/restClient';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Tabs } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
@@ -18,13 +18,20 @@ export class HomePage implements OnHttpResponse {
   }
   //endregion CONSTANTS
 
+  //region PUBLIC_VARIABLES
+  public title: string
+
+  public anyPending: boolean
+  //endregion PUBLIC_VARIABLES
+
   //region ONHTTPRESPONSE
   onDataReceived(data) {
     var result = data.result
     console.log(result);
-    
+
     if (result.auth) {
       this.userdb.modifyUserToken(result.t)
+
     } else {
       this.userdb.getUser()
         .then(value => {
@@ -38,11 +45,6 @@ export class HomePage implements OnHttpResponse {
     throw new Error("Method not implemented.");
   }
   //endregion ONHTTPRESPONSE
-
-  //region PUBLIC_METHODS
-  public title: string
-  //endregion PUBLIC_METHODS
-
 
   //region CONSTRUCTOR
   constructor(public navCtrl: NavController,
@@ -58,6 +60,8 @@ export class HomePage implements OnHttpResponse {
 
   //region PRIVATE_METHODS
   private starter() {
+    this.anyPending = true
+
     this.translate.get(this.translateStrings.HOME_TITLE)
       .subscribe(value => { this.title = value })
 
@@ -67,5 +71,11 @@ export class HomePage implements OnHttpResponse {
       })
   }
   //endregion PRIVATE_METHODS
+
+  //region PUBLIC_METHODS
+  public goToExplore() {
+    this.navCtrl.parent.select(1);
+  }
+  //endregion PUBLIC_METHODS
 
 }
