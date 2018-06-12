@@ -41,10 +41,11 @@ export class ButtonReadlaterComponent implements OnHttpResponse {
     var result = data.result
     if (result.auth) {
       this.userdb.modifyUserToken(result.t)
+      if (result.books) {
+        this.onGetBook.onGetBooks(result.books)
+      }
       if (result.isReadLater) {
         this.isReadLater = result.isReadLater
-      } else if (result.books) {
-        this.onGetBook.onGetBooks(result.books)
       } else if (result.addReadLater) {
         this.isReadLater = true
         this.addedBookmark()
