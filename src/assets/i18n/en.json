@@ -34,6 +34,10 @@
     "SEARCHBAR_FILTER_CANCEL": "Cancel",
     "SEARCHBAR_FILTER_OK": "Ok",
     "ERROR_MSG_7": "The search has not been successful",
-    "READLATER_ADDED" : "Added to read later",
-    "READLATER_REMOVED" : "Removed from read later"  
+    "READLATER_ADDED": "Added to read later",
+    "READLATER_REMOVED": "Removed from read later",
+    "HOME_NO_PENDINGS_MSG": "No books here",
+    "HOME_NO_PENDINGS_BTN": "Go to Explore",
+    "HOME_PENDINGS_CONTINUE_READINGS": "Continue your reading",
+    "HOME_PENDINGS_SIMILAR": "Might interest you"
 }

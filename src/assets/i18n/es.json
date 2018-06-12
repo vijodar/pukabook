@@ -34,6 +34,10 @@
     "SEARCHBAR_FILTER_CANCEL": "Cancelar",
     "SEARCHBAR_FILTER_OK": "Aceptar",
     "ERROR_MSG_7": "No se ha realizado con éxito la búsqueda",
-    "READLATER_ADDED" : "Añadido a leer más tarde",
-    "READLATER_REMOVED" : "Eliminado de leer más tarde"  
+    "READLATER_ADDED": "Añadido a leer más tarde",
+    "READLATER_REMOVED": "Eliminado de leer más tarde",
+    "HOME_NO_PENDINGS_MSG": "Ningún libro por aquí",
+    "HOME_NO_PENDINGS_BTN": "Ir hacia Explora",
+    "HOME_PENDINGS_CONTINUE_READINGS": "Continúa tu lectura",
+    "HOME_PENDINGS_SIMILAR": "Quizás te interese"
 }
