@@ -1,5 +1,7 @@
 page-home {
-    .no-pending {
-        height: 50%;
+    .vertical-align-content>* {
+        display: flex !important;
+        align-content: center !important;
+        align-items: center !important;
     }
 }
