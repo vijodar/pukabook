@@ -40,6 +40,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
 //endregion PROVIDERS
 
 //region PAGE_MODULES
+import { LoginPageModule } from './../pages/login/login.module';
+import { StartPageModule } from '../pages/start/start.module';
 import { HomePageModule } from '../pages/home/home.module';
 import { ExplorePageModule } from '../pages/explore/explore.module';
 import { BookDetailsPageModule } from '../pages/book-details/book-details.module';
@@ -60,8 +62,6 @@ const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage,
-    StartPage,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +77,8 @@ const firebaseConfig = {
         deps: [HttpClient]
       }
     }),
+    LoginPageModule,
+    StartPageModule,
     HomePageModule,
     ExplorePageModule,
     BookDetailsPageModule,
