@@ -52,9 +52,6 @@ export class CloseEreaderComponent implements OnHttpResponse {
     private rjs: RestClientProvider,
     private userdb: UserDBProvider,
     private errordialog: ErrorDialogProvider) {
-
-    console.log(this.alines, this.idBook);
-
   }
   //endregion CONSTRUCTOR
 

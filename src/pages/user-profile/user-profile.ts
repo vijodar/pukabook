@@ -10,9 +10,4 @@ export class UserProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserProfilePage');
-  }
-
 }

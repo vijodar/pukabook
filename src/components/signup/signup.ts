@@ -72,7 +72,6 @@ export class SignupComponent implements OnHttpResponse {
     this.toast.present()
   }
   onErrorReceivingData(message: number) {
-    console.log("NOT REGISTERED");
 
   }
   //endregion ONHTTPRESPONSE

@@ -112,7 +112,6 @@ export class EreaderPage implements OnHttpResponse, OnCloseEreaderResponse {
 
     this.scrollOne = false
     this.idbook = this.navParams.get('idbook')
-    console.log(this.idbook);
 
     this.title = this.navParams.get('bname')
     this.lang = this.translate.getBrowserLang()

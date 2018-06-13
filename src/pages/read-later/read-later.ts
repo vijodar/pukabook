@@ -29,7 +29,6 @@ export class ReadLaterPage {
   //region ONHTTPRESPONSE
   onDataReceived(data) {
     var result = data.result
-    console.log(result);
 
     if (result.auth) {
       this.userdb.modifyUserToken(result.t)
