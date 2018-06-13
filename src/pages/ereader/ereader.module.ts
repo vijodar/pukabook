@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { EreaderPage } from './ereader';
@@ -8,6 +9,7 @@ import { EreaderPage } from './ereader';
   ],
   imports: [
     IonicPageModule.forChild(EreaderPage),
+    ComponentsModule,
   ],
 })
 export class EreaderPageModule {}

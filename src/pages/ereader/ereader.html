@@ -1,12 +1,24 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>ereader</ion-title>
+    <ion-buttons left>
+      <close-ereader [onCloseEreader]="this" [idBook]="idbook" [alines]="eReaderLines"></close-ereader>
+    </ion-buttons>
+    <ion-title text-nowrap>{{title}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <span class="paraph" *ngFor="let text of bookContent; let i = index" [attr.data-index]="i">
+    <span *ngIf="alines == i">
+      <span id="{{i}}" #scrollToMe>{{text}}</span>
+    </span>
 
+    <span *ngIf="alines != i">
+      <span id="{{i}}">{{text}}</span>
+    </span>
+
+    <br *ngIf="i%5==0" />
+
+    <span *ngIf="finishToLoadContent(i)"></span>
+  </span>
 </ion-content>
