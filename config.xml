@@ -3,7 +3,7 @@
     <name>PukaBook</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://172.16.0.141:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -94,8 +94,9 @@
         <variable name="\REVERSED_CLIENT_ID" value="com.googleusercontent.apps.627097748993-lp6rrncr3t1c82svg0gdi51mcl86fkv3" />
     </plugin>
     <allow-navigation href="http://192.168.0.103:8100" />
-    <engine name="android" spec="7.0.0" />
-    <engine name="browser" spec="5.0.3" />
     <plugin name="cordova-sqlite-storage" spec="^2.3.2" />
     <plugin name="com-sarriaroman-photoviewer" spec="^1.1.17" />
+    <allow-navigation href="http://172.16.0.141:8100" />
+    <engine name="android" spec="7.0.0" />
+    <engine name="browser" spec="5.0.3" />
 </widget>

@@ -10,6 +10,13 @@
             <!-- <button menuClose ion-item *ngFor="let p of pages">
                 {{p.title}}
             </button> -->
+            <button ion-item (click)= "openPage('user-profile')">User Profile</button>
+            <button ion-item (click)= "openPage('pending')">Pendings</button>
+            <button ion-item (click)= "openPage('read-later')">Read later</button>
+        </ion-list>
+        <ion-list class="bottom">
+            <button ion-item (click)= "openPage('help')">Help</button>
+            <button ion-item (click)= "logout()">Logout</button>
         </ion-list>
     </ion-content>
 </ion-menu>

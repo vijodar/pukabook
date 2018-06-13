@@ -27,6 +27,10 @@ import { SQLite } from '@ionic-native/sqlite';
 //region PAGES
 import { LoginPage } from '../pages/login/login';
 import { StartPage } from '../pages/start/start';
+import {UserProfilePage} from '../pages/user-profile/user-profile';
+import {PendingPage} from '../pages//pending/pending';
+import {ReadLaterPage} from '../pages//read-later/read-later';
+import {HelpPage} from '../pages//help/help';
 //endregion PAGES
 
 //region PROVIDERS
@@ -61,6 +65,10 @@ const firebaseConfig = {
     MyApp,
     LoginPage,
     StartPage,
+    UserProfilePage,
+    PendingPage,
+    ReadLaterPage,
+    HelpPage
   ],
   imports: [
     BrowserModule,
@@ -89,6 +97,10 @@ const firebaseConfig = {
     MyApp,
     LoginPage,
     StartPage,
+    UserProfilePage,
+    PendingPage,
+    ReadLaterPage,
+    HelpPage
   ],
   providers: [
     StatusBar,
