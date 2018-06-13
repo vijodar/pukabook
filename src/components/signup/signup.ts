@@ -1,8 +1,12 @@
+import { HasherProvider } from './../../providers/hasher/hasher';
 import { ErrorDialogProvider } from './../../providers/error-dialog/error-dialog';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OnHttpResponse } from '../../interfaces/onHttpResponse';
 import { RestClientProvider } from '../../providers/rest-client/restClient';
 import { TranslateService } from '@ngx-translate/core';
+import sha1 from 'js-sha1';
+import { ToastController, Toast } from 'ionic-angular';
+import { OnCreateNewUserResponse } from '../../interfaces/onCreateNewUserResponse';
 
 @Component({
   selector: 'signup',
@@ -10,12 +14,19 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SignupComponent implements OnHttpResponse {
 
+  //region INPUTS
+  @Input()
+  onCreateUser: OnCreateNewUserResponse
+  //endregion INPUTS
+
   //region CONSTANTS
   private translateStrings = {
     "SIGN_UP_EMAIL_PLACEHOLDER": "SIGN_UP_EMAIL_PLACEHOLDER",
     "SIGN_UP_PASSWORD_PLACEHOLDER": "SIGN_UP_PASSWORD_PLACEHOLDER",
     "SIGN_UP_PASSWORD2_PLACEHOLDER": "SIGN_UP_PASSWORD2_PLACEHOLDER",
     "SIGN_UP_BUTTON": "SIGN_UP_BUTTON",
+    "SIGN_UP_CORRECT": "SIGN_UP_CORRECT",
+    "SIGN_UP_INCORRECT": "SIGN_UP_INCORRECT",
   }
   //endregion CONSTANTS
 
@@ -30,10 +41,20 @@ export class SignupComponent implements OnHttpResponse {
   public signupBtnText: string
   //endregion PUBLIC_VARIABLES
 
+  //region PRIVATE_VARIAVLES
+  private toast: Toast
+
+  private registerMsg: string
+  private notRegisterMsg: string
+  //endregion PRIVATE_VARIAVLES
+
   //region CONST
-  constructor(private rjs: RestClientProvider,
+  constructor(
+    private rjs: RestClientProvider,
     private dialogError: ErrorDialogProvider,
-    private translate: TranslateService, ) {
+    private translate: TranslateService,
+    private hasher: HasherProvider,
+    private toastCtrl: ToastController) {
 
     this.starter()
   }
@@ -41,19 +62,29 @@ export class SignupComponent implements OnHttpResponse {
 
   //region ONHTTPRESPONSE
   onDataReceived(data) {
-    console.log(data)
+    var result = data.result
+    if (result.register) {
+      this.toast.setMessage(this.registerMsg)
+      this.onCreateUser.onCreateUser()
+    } else {
+      this.toast.setMessage(this.notRegisterMsg)
+    }
+    this.toast.present()
   }
   onErrorReceivingData(message: number) {
-    throw new Error("Method not implemented.")
+    console.log("NOT REGISTERED");
+
   }
   //endregion ONHTTPRESPONSE
 
   //region PUBLIC_METHODS
   public signUpButton() {
     if (this.checkEmailField() && this.checkPassField()) {
-      var userpass = btoa(this.signupEmail + ":" + this.signupPass1)
+      var userpass = btoa(this.hasher.encrypt(this.signupEmail) + ":" + sha1(this.signupPass1))
       var auth = "Basic " + userpass
-      this.rjs.doRequest("POST", "login", auth + "", this)
+      var username = this.hasher.encrypt(this.signupEmail.split("@")[0])
+
+      this.rjs.doRequest("POST", "register", auth + "", this, { username: username })
     }
   }
   //endregion PUBLIC_METHODS
@@ -75,6 +106,18 @@ export class SignupComponent implements OnHttpResponse {
 
     this.translate.get(this.translateStrings.SIGN_UP_PASSWORD2_PLACEHOLDER)
       .subscribe(value => { this.passAPlaceholder = value })
+
+    this.translate.get(this.translateStrings.SIGN_UP_CORRECT)
+      .subscribe(value => { this.registerMsg = value })
+
+    this.translate.get(this.translateStrings.SIGN_UP_INCORRECT)
+      .subscribe(value => { this.notRegisterMsg = value })
+
+
+    this.toast = this.toastCtrl.create({
+      position: 'top',
+      duration: 3000,
+    })
   }
 
   private checkEmailField(): boolean {

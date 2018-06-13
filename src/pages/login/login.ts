@@ -1,3 +1,4 @@
+import { OnCreateNewUserResponse } from './../../interfaces/onCreateNewUserResponse';
 import { Component } from '@angular/core'
 import { NavController } from 'ionic-angular'
 import { OnHttpResponse } from '../../interfaces/onHttpResponse'
@@ -11,7 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
   selector: 'page-login',
   templateUrl: 'login.html'
 })
-export class LoginPage {
+export class LoginPage implements OnCreateNewUserResponse {
 
   //region CONSTANTS
   private translateStrings = {
@@ -26,10 +27,16 @@ export class LoginPage {
 
   public signinStatus: string
   public signupStatus: string
-  
+
   public btnSwitchSignInString: string
   public btnSwitchSignUpString: string
   //endregion PUBLIC_VARIABLES
+
+  //region ONCREATENEWUSERRESPONSE
+  onCreateUser() {
+    this.switchForm()
+  }
+  //endregion ONCREATENEWUSERRESPONSE
 
   //region CONST
   constructor(public navCtrl: NavController,
