@@ -55,11 +55,8 @@ export class EreaderPage implements OnHttpResponse, OnCloseEreaderResponse {
     if (result.auth) {
       this.userdb.modifyUserToken(result.t)
       this.alines = result.alines
+      this.eReaderLines = this.alines
       this.bookContent = result.content
-
-      console.log();
-
-
       this.loading.present()
     } else {
       this.userdb.getUser()
@@ -88,7 +85,6 @@ export class EreaderPage implements OnHttpResponse, OnCloseEreaderResponse {
 
       if (any.id) {
         this.eReaderLines = parseInt(any.id)
-        console.log(this.eReaderLines);
       }
     })
   }
@@ -121,6 +117,7 @@ export class EreaderPage implements OnHttpResponse, OnCloseEreaderResponse {
     this.title = this.navParams.get('bname')
     this.lang = this.translate.getBrowserLang()
     this.alines = 0
+    this.eReaderLines = 0
 
     this.translate.get(this.translateStrings.LOADING)
       .subscribe(value => { this.loadingMsg = value })
