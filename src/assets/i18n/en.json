@@ -42,5 +42,7 @@
     "HOME_NO_PENDINGS_MSG": "No books here",
     "HOME_NO_PENDINGS_BTN": "Go to Explore",
     "HOME_PENDINGS_CONTINUE_READINGS": "Continue your reading",
-    "HOME_PENDINGS_SIMILAR": "Might interest you"
+    "HOME_PENDINGS_SIMILAR": "Might interest you",
+    "READLATER_TITLE": "Read later",
+    "PENDING_TITLE": "Readings"
 }
