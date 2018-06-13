@@ -11,6 +11,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 //endregion ANGULAR
 
 //region NGX_TRANSLATE
@@ -24,6 +26,7 @@ import { SQLite } from '@ionic-native/sqlite';
 
 //region PAGES
 import { LoginPage } from '../pages/login/login';
+import { StartPage } from '../pages/start/start';
 //endregion PAGES
 
 //region PROVIDERS
@@ -31,25 +34,47 @@ import { RestClientProvider } from '../providers/rest-client/restClient';
 import { ErrorDialogProvider } from '../providers/error-dialog/error-dialog';
 import { UserDBProvider } from '../providers/userdb/userdb';
 import { HasherProvider } from '../providers/hasher/hasher';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { GooglePlus } from '@ionic-native/google-plus';
 //endregion PROVIDERS
 
-//region COMPONENTS
-import { SigninComponent } from '../components/signin/signin';
-import { SignupComponent } from '../components/signup/signup';
-//endregion COMPONENTS
+//region PAGE_MODULES
+import { LoginPageModule } from './../pages/login/login.module';
+import { StartPageModule } from '../pages/start/start.module';
+import { HomePageModule } from '../pages/home/home.module';
+import { ExplorePageModule } from '../pages/explore/explore.module';
+import { BookDetailsPageModule } from '../pages/book-details/book-details.module';
+import { ComponentsModule } from '../components/components.module';
+import { AuthorPageModule } from '../pages/author/author.module';
+import { EreaderPageModule } from '../pages/ereader/ereader.module';
+import { HelpPageModule } from '../pages/help/help.module';
+import { PendingPageModule } from '../pages/pending/pending.module';
+import { ReadLaterPageModule } from '../pages/read-later/read-later.module';
+import { UserProfilePageModule } from '../pages/user-profile/user-profile.module';
+//endregion PAGE_MODULES
+
+//region FIREBASE_CONF
+const firebaseConfig = {
+  apiKey: "AIzaSyC-dp0BeYX3yHp1aXnjojLsuCfU2oE0UEg",
+  authDomain: "pukabook-3f5ec.firebaseapp.com",
+  databaseURL: "https://pukabook-3f5ec.firebaseio.com",
+  projectId: "pukabook-3f5ec",
+  storageBucket: "pukabook-3f5ec.appspot.com",
+  messagingSenderId: "627097748993"
+};
+//endregion FIREBASE_CONF
 
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage,
-    SigninComponent,
-    SignupComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig), // <-- firebase here
+    AngularFireAuthModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -57,11 +82,24 @@ import { SignupComponent } from '../components/signup/signup';
         deps: [HttpClient]
       }
     }),
+    LoginPageModule,
+    StartPageModule,
+    HomePageModule,
+    ExplorePageModule,
+    BookDetailsPageModule,
+    AuthorPageModule,
+    EreaderPageModule,
+    HelpPageModule,
+    PendingPageModule,
+    ReadLaterPageModule,
+    UserProfilePageModule,
+    ComponentsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LoginPage
+    LoginPage,
+    StartPage,
   ],
   providers: [
     StatusBar,
@@ -71,11 +109,12 @@ import { SignupComponent } from '../components/signup/signup';
     ErrorDialogProvider,
     UserDBProvider,
     HasherProvider,
+    PhotoViewer,
     SQLite,
+    GooglePlus,
   ]
 })
 export class AppModule { }
-
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

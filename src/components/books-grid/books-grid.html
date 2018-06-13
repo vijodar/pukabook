@@ -1,0 +1,14 @@
+<ion-grid>
+  <ion-row>
+    <ion-col col-6 *ngFor="let book of books">
+      <ion-card ion-ripple (click)="viewBookDetails(book.id)">
+        <img src="https://python-server-vicjod.c9users.io/images/books?image={{book.photo}}" height="25%" width="50%" />
+        <ion-card-content>
+          <ion-card-title text-justify>
+            {{book.bname}}
+          </ion-card-title>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

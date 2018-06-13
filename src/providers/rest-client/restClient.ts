@@ -1,6 +1,6 @@
 import { ErrorDialogProvider } from './../error-dialog/error-dialog';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OnHttpResponse } from '../../interfaces/onHttpResponse';
 import { LoadingController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,20 +29,21 @@ export class RestClientProvider {
     //endregion VARIABLES
 
     //region CONSTRUCTOR
-    constructor(public http: HttpClient,
-        public loadingCtrl: LoadingController,
-        public dialogError: ErrorDialogProvider,
+    constructor(
+        private http: HttpClient,
+        private loadingCtrl: LoadingController,
+        private dialogError: ErrorDialogProvider,
         private translate: TranslateService) {
-        translate
-            .get(this.translateStrings.LOADING)
-            .subscribe(value => {
-                this.message = value
-            })
     }
     //endregion CONSTRUCTOR
 
     //region PRIVATE_METHODS
     private prepareRequest(target: string, auth: string, responseObject: OnHttpResponse) {
+        this.translate.get(this.translateStrings.LOADING)
+            .subscribe(value => {
+                this.message = value
+            })
+
         this.url = this.urlApi + target
         this.response = responseObject
 
@@ -52,7 +53,7 @@ export class RestClientProvider {
         })
     }
 
-    private prepareLoader(){
+    private prepareLoader() {
         let loader = this.loadingCtrl.create({ content: this.message });
         loader.present()
         return loader
@@ -65,22 +66,15 @@ export class RestClientProvider {
 
     //region PUBLIC_METHODS
     public doRequest(method: string = "GET", target: string, auth: string,
-        responseObject: OnHttpResponse, data?: Map<string, any>) {
+        responseObject: OnHttpResponse, dataToSend?: any) {
 
         this.prepareRequest(target, auth, responseObject)
 
         let loader = this.prepareLoader()
-        
-        var djson: string = null
-        if (data != null) {
-            if (data.size > 0) {
-                djson = JSON.stringify(data)
-            }
-        }
 
         switch (method) {
             case this.METHODS.POST: //POST
-                this.http.post(this.url, djson, { headers: this.headers })
+                this.http.post(this.url, dataToSend, { headers: this.headers })
                     .subscribe(
                         data => {
                             this.response.onDataReceived(data)
@@ -90,7 +84,7 @@ export class RestClientProvider {
                         })
                 break;
             case this.METHODS.PUT: //PUT
-                this.http.put(this.url, djson, { headers: this.headers })
+                this.http.put(this.url, dataToSend, { headers: this.headers })
                     .subscribe(
                         data => {
                             this.response.onDataReceived(data)
@@ -110,7 +104,6 @@ export class RestClientProvider {
                         })
                 break;
             case this.METHODS.GET: //GET
-            default:
                 this.http.get(this.url, { headers: this.headers })
                     .subscribe(
                         data => {

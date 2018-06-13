@@ -5,15 +5,15 @@
 <!-- endregion BACKGROUND -->
 
 <!-- region SIGNIN_FORM -->
-<signin id="in" class="center {{signinStatus}}"></signin>
+<signin id="in" class="center {{signinStatus}}" [navCtrl]="navCtrl"></signin>
 <!-- endregion SIGNIN_FORM -->
 
 <!-- region SIGNUP_FORM -->
-<signup id="up" class="center {{signupStatus}}"></signup>
+<signup id="up" [onCreateUser]="this" class="center {{signupStatus}}"></signup>
 <!-- endregion SIGNUP_FORM -->
 
 <!-- region BUTTON_SWITCHFORM -->
 <button float-end ion-button clear id="btnSwitchForm" color="positive" class="footer" (click)="switchForm()">
-  {{ 'LOGIN_SWITCH_SIGNIN' | translate }}
+  {{ btnSwitchSignInString }}
 </button>
 <!-- endregion BUTTON_SWITCHFORM -->

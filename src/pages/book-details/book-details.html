@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="purple">
+    <ion-title text-nowrap>{{book.bname}}</ion-title>
+    <ion-buttons end>
+      <button-readlater [idBook]="book.id" [onGetBook]="this"></button-readlater>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <img src="https://python-server-vicjod.c9users.io/images/books?image={{book.photo}}" />
+      </ion-col>
+      <ion-col col-6 text-center>
+        <p padding>
+          {{book.bname}}
+        </p>
+        <div padding>
+          {{by}}
+          <button ion-button clear color="positive" text-wrap (click)="viewAuthorDetails()">
+            {{author.first}} {{author.last}}
+          </button>
+        </div>
+        <div padding>
+          <button ion-button color="purple" block (click)="readBook()">
+            {{read}}
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <expandable [expanded]="true" [buttonText]="synopsis">
+    {{book.synopsis}}
+  </expandable>
+  <expandable [expanded]="false" [buttonText]="similar">
+    <books-grid [books]="books" [emptyPageStash]="true"></books-grid>
+  </expandable>
+</ion-content>

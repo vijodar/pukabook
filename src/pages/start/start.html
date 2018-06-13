@@ -1,0 +1,24 @@
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar color="purple">
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <button ion-item (click)= "openPage('user-profile')">User Profile</button>
+            <button ion-item (click)= "openPage('pending')">Pendings</button>
+            <button ion-item (click)= "openPage('read-later')">Read later</button>
+        </ion-list>
+        <ion-list class="bottom">
+            <button ion-item (click)= "openPage('help')">Help</button>
+            <button ion-item (click)= "logout()">Logout</button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-tabs #content color="purple">
+    <ion-tab [root]="homeRoot" tabTitle="{{homeTitle}}" tabIcon="home"></ion-tab>
+    <ion-tab [root]="exploreRoot" tabTitle="{{exploreTitle}}" tabIcon="compass"></ion-tab>
+</ion-tabs>

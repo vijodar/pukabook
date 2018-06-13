@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="purple">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>{{ title }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showHideSearchBar()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <searchbar-books *ngIf="showSBar" [showFilterBtn]="true"
+    [url]="urlSearch" [onSearchBooks]="this" ></searchbar-books>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <books-grid [books]="books" [launchFromRoot]="true"></books-grid>
+</ion-content>

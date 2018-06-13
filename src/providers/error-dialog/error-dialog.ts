@@ -12,10 +12,7 @@ export class ErrorDialogProvider {
   //endregion VARIABLES
 
   //region CONTRUCTOR
-  constructor(public dialogCtrl: AlertController, public translate: TranslateService) {
-    this.translate.get("ERROR_OK").subscribe(value => {
-      this.buttonText = value
-    })
+  constructor(private dialogCtrl: AlertController, private translate: TranslateService) {
   }
   //endregion CONSTRUCTOR
 
@@ -28,13 +25,17 @@ export class ErrorDialogProvider {
     this.translate.get("ERROR_MSG_" + errorNo).subscribe(value => {
       this.message = value
     })
+
+    this.translate.get("ERROR_OK").subscribe(value => {
+      this.buttonText = value
+    })
   }
   //endregion PRIVATE_METHODS
 
   //region PUBLIC_METHODS
   public showErrorDialog(errorNo: number) {
     this.setDialogConf(errorNo)
-    
+
     let dialog = this.dialogCtrl.create({
       title: this.title,
       subTitle: this.message,

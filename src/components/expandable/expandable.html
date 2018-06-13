@@ -1,0 +1,6 @@
+<button ion-button color="grey" block (click)="changeExpanded()">
+  {{buttonText}} <span style="width:50em;"></span> <ion-icon name="{{icon}}"></ion-icon>
+</button>
+<div padding class="content" *ngIf="expanded">
+  <ng-content></ng-content>
+</div>
