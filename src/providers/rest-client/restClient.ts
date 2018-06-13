@@ -34,16 +34,16 @@ export class RestClientProvider {
         private loadingCtrl: LoadingController,
         private dialogError: ErrorDialogProvider,
         private translate: TranslateService) {
-        translate
-            .get(this.translateStrings.LOADING)
-            .subscribe(value => {
-                this.message = value
-            })
     }
     //endregion CONSTRUCTOR
 
     //region PRIVATE_METHODS
     private prepareRequest(target: string, auth: string, responseObject: OnHttpResponse) {
+        this.translate.get(this.translateStrings.LOADING)
+            .subscribe(value => {
+                this.message = value
+            })
+
         this.url = this.urlApi + target
         this.response = responseObject
 

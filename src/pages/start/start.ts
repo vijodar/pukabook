@@ -38,6 +38,7 @@ export class StartPage {
 
   //region PRIVATE_METHODS
   private starter() {
+    this.statusBar.show()
     this.statusBar.overlaysWebView(false)
     this.statusBar.backgroundColorByHexString("#554257")
 
