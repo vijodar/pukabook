@@ -1,20 +1,21 @@
-<!--
-  Generated template for the ReadLaterPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar color="purple">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>later</ion-title>
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showHideSearchBar()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+
+  <searchbar-books *ngIf="showSBar" [showFilterBtn]="false"
+    [url]="urlSearch" [onSearchBooks]="this" ></searchbar-books>
 </ion-header>
 
 
 <ion-content padding>
-PARA LEER LUEGO
-<books-grid [books]="books" [launchFromRoot]="true"></books-grid>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <books-grid [books]="books" [launchFromRoot]="true"></books-grid>
 </ion-content>

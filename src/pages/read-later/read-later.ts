@@ -1,19 +1,36 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OnGetBooksResponse } from './../../interfaces/onGetBooksResponse';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content, Refresher } from 'ionic-angular';
 import { UserDBProvider } from './../../providers/userdb/userdb';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
 import { RestClientProvider } from './../../providers/rest-client/restClient';
 import { Book } from '../../model/book';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
   selector: 'page-read-later',
   templateUrl: 'read-later.html',
 })
-export class ReadLaterPage {
+export class ReadLaterPage implements OnHttpResponse, OnGetBooksResponse {
+
+  //region VIEW_CHILD
+  @ViewChild(Content) content: Content;
+  //endregion VIEW_CHILD
+
+  //region CONSTANTS
+  private translateStrings = {
+    "READLATER_TITLE": "READLATER_TITLE",
+  }
+  //endregion CONSTANTS
 
   //region PUBLIC_VARIABLES
   public books: Book[]
+
+  public title: string
+  public showSBar: boolean
+  public urlSearch: string
+  public filter: string
   //endregion PUBLIC_VARIABLES
 
   //region CONSTRUCTOR
@@ -21,7 +38,9 @@ export class ReadLaterPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private userdb: UserDBProvider,
-    private rjs: RestClientProvider, ) {
+    private rjs: RestClientProvider,
+    private translate: TranslateService, ) {
+
     this.starter()
   }
   //endregion CONSTRUCTOR
@@ -29,11 +48,9 @@ export class ReadLaterPage {
   //region ONHTTPRESPONSE
   onDataReceived(data) {
     var result = data.result
-
     if (result.auth) {
       this.userdb.modifyUserToken(result.t)
       this.books = result.books
-
     } else {
       this.userdb.getUser()
         .then(value => {
@@ -49,12 +66,41 @@ export class ReadLaterPage {
   }
   //endregion ONHTTPRESPONSE
 
+  //region ONSEARCHBOOKSRESPONSE
+  onGetBooks(books: Book[]) {
+    this.books = books
+  }
+  //ebdregion ONSEARCHBOOKSRESPONSE
+
   //region PRIVATE_METHODS
   private starter() {
+    this.showSBar = false
+    this.filter = "name"
+    this.urlSearch = "readlater"
+
+    this.translate.get(this.translateStrings.READLATER_TITLE)
+      .subscribe(value => { this.title = value })
+
+    this.getBooks()
+  }
+
+  private doRefresh(refresher: Refresher) {
+    this.getBooks()
+    refresher.complete();
+  }
+  //endregion PRIVATE_METHODS
+
+  //region PUBLIC_METHODS
+  public getBooks() {
     this.userdb.getUser()
       .then(value => {
         this.rjs.doRequest("POST", "books/readlater", "Bearer " + value.token, this)
-      });
+      })
   }
-  //endregion PRIVATE_METHODS
+
+  public showHideSearchBar() {
+    this.showSBar = !this.showSBar
+    this.content.resize()
+  }
+  //endregion PUBLIC_METHODS
 }
