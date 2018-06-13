@@ -7,6 +7,8 @@
     "SIGN_UP_PASSWORD_PLACEHOLDER": "Contraseña",
     "SIGN_UP_PASSWORD2_PLACEHOLDER": "Confirme su contraseña",
     "SIGN_UP_BUTTON": "Registrarse",
+    "SIGN_UP_CORRECT": "Se ha creado con éxito la cuenta. Ya puede iniciar sesión",
+    "SIGN_UP_INCORRECT": "Correo ya existente. Introduzca otro",
     "LOGIN_SWITCH_SIGNIN": "¿Nuevo aquí? Registrate",
     "LOGIN_SWITCH_SIGNUP": "¿Tienes cuenta? Inicia sesión",
     "LOADING": "Cargando...",

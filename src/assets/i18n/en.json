@@ -7,6 +7,8 @@
     "SIGN_UP_PASSWORD_PLACEHOLDER": "Password",
     "SIGN_UP_PASSWORD2_PLACEHOLDER": "Confirm Password",
     "SIGN_UP_BUTTON": "Sign Up",
+    "SIGN_UP_CORRECT": "The account has been successfully created. You can now log in",
+    "SIGN_UP_INCORRECT": "Existing email. Enter another",
     "LOGIN_SWITCH_SIGNIN": "New here? Sign Up",
     "LOGIN_SWITCH_SIGNUP": "Got account? Log In",
     "LOADING": "Loading...",
