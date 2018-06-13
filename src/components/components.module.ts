@@ -14,6 +14,7 @@ import { ExpandableComponent } from './expandable/expandable';
 import { SearchbarBooksComponent } from './searchbar-books/searchbar-books';
 import { ButtonReadlaterComponent } from './button-readlater/button-readlater';
 import { GoogleLoginComponent } from './google-login/google-login';
+import { CloseEreaderComponent } from './close-ereader/close-ereader';
 //endimports COMPONENTS
 
 @NgModule({
@@ -25,6 +26,7 @@ import { GoogleLoginComponent } from './google-login/google-login';
 		SearchbarBooksComponent,
     ButtonReadlaterComponent,
     GoogleLoginComponent,
+    CloseEreaderComponent,
 	],
 	imports: [
 		IonicModule,
@@ -37,6 +39,7 @@ import { GoogleLoginComponent } from './google-login/google-login';
 		SearchbarBooksComponent,
     ButtonReadlaterComponent,
     GoogleLoginComponent,
+    CloseEreaderComponent,
 	]
 })
 export class ComponentsModule { }
