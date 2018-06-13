@@ -5,9 +5,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { Author } from '../../model/author';
 import { Book } from '../../model/book';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AuthorPage } from '../author/author';
 import { OnGetBooksResponse } from '../../interfaces/onGetBooksResponse';
+import { EreaderPage } from '../ereader/ereader';
 
 @IonicPage()
 @Component({
@@ -67,7 +68,8 @@ export class BookDetailsPage implements OnHttpResponse, OnGetBooksResponse {
     public navParams: NavParams,
     private translate: TranslateService,
     private userdb: UserDBProvider,
-    private rjs: RestClientProvider) {
+    private rjs: RestClientProvider,
+    private appCtrl: App) {
 
     this.starter()
   }
@@ -104,6 +106,14 @@ export class BookDetailsPage implements OnHttpResponse, OnGetBooksResponse {
   //region PUBLIC_METHODS
   public viewAuthorDetails() {
     this.navCtrl.push(AuthorPage, { author: this.author })
+  }
+
+  public readBook() {
+    this.appCtrl.getRootNavs()[0].setRoot(EreaderPage,
+      {
+        idbook: this.book.id,
+        bname: this.book.bname,
+      })
   }
   //endregion PUBLIC_METHODS
 }
