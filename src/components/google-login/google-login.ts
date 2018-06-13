@@ -1,3 +1,4 @@
+import { ErrorDialogProvider } from './../../providers/error-dialog/error-dialog';
 import { HasherProvider } from './../../providers/hasher/hasher';
 import { TranslateService } from '@ngx-translate/core';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
@@ -58,7 +59,8 @@ export class GoogleLoginComponent implements OnHttpResponse {
     private translate: TranslateService,
     private rjs: RestClientProvider,
     private hasher: HasherProvider,
-    private userdb: UserDBProvider) {
+    private userdb: UserDBProvider,
+    private errorDialog: ErrorDialogProvider, ) {
 
     this.starter()
   }
@@ -92,11 +94,15 @@ export class GoogleLoginComponent implements OnHttpResponse {
       }, function () {
         loading.dismiss()
       }).then(() => {
-        var userpass = btoa(this.hasher.encrypt(userG.email) + ":" + sha1(userG.userId))
-        var header = "Basic " + userpass
-        var username = this.hasher.encrypt(userG.email.split("@")[0])
+        if (userG) {
+          var userpass = btoa(this.hasher.encrypt(userG.email) + ":" + sha1(userG.userId))
+          var header = "Basic " + userpass
+          var username = this.hasher.encrypt(userG.email.split("@")[0])
 
-        this.rjs.doRequest("POST", "login/google", header, this, { username: username })
+          this.rjs.doRequest("POST", "login/google", header, this, { username: username })
+        } else {
+          this.errorDialog.showErrorDialog(8)
+        }
       })
   }
   //endregion PUBLIC_VARIABLES
