@@ -1,9 +1,10 @@
+import { EreaderPage } from './../ereader/ereader';
 import { Book } from './../../model/book';
 import { UserDBProvider } from './../../providers/userdb/userdb';
 import { OnHttpResponse } from './../../interfaces/onHttpResponse';
 import { RestClientProvider } from './../../providers/rest-client/restClient';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Tabs } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, App, Content } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
@@ -12,6 +13,10 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'home.html',
 })
 export class HomePage implements OnHttpResponse {
+
+  //region VIEW_CHILD
+  @ViewChild(Content) content: Content;
+  //endregion VIEW_CHILD
 
   //region CONSTANTS
   private translateStrings = {
@@ -34,7 +39,6 @@ export class HomePage implements OnHttpResponse {
 
   public lastBook: Book
   public books: Book[]
-  public alines: number
   //endregion PUBLIC_VARIABLES
 
   //region ONHTTPRESPONSE
@@ -44,11 +48,12 @@ export class HomePage implements OnHttpResponse {
       this.userdb.modifyUserToken(result.t)
       if (result.lastbook && result.books) {
         this.noPending = false
-        this.alines = result.lastbook.alines
-        delete result.lastbook.alines
         this.lastBook = <Book>result.lastbook
-        console.log(this.lastBook);
         this.books = result.books
+
+        setTimeout(() => {
+          this.content.resize()
+        }, 800);
       } else {
         this.noPending = true
       }
@@ -71,8 +76,8 @@ export class HomePage implements OnHttpResponse {
     public navParams: NavParams,
     private translate: TranslateService,
     private rjs: RestClientProvider,
-    private userdb: UserDBProvider
-  ) {
+    private userdb: UserDBProvider,
+    private appCtrl: App) {
 
     this.starter()
   }
@@ -107,7 +112,15 @@ export class HomePage implements OnHttpResponse {
 
   //region PUBLIC_METHODS
   public goToExplore() {
-    this.navCtrl.parent.select(1);
+    this.navCtrl.parent.select(1)
+  }
+
+  public continueReading() {
+    this.appCtrl.getRootNavs()[0].setRoot(EreaderPage,
+      {
+        idbook: this.lastBook.id,
+        bname: this.lastBook.bname,
+      })
   }
   //endregion PUBLIC_METHODS
 

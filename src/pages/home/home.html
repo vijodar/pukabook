@@ -7,7 +7,7 @@
     <ion-title>{{ title }}</ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only *ngIf="!noPending">
+      <button ion-button icon-only *ngIf="!noPending" (click)="continueReading()">
         <ion-icon name="ios-bookmarks"></ion-icon>
       </button>
     </ion-buttons>
@@ -45,7 +45,7 @@
       </ion-col>
     </ion-row>
     <ion-row padding>
-      <button ion-button color="purple" block>
+      <button ion-button color="purple" block (click)="continueReading()">
         {{pendingsContinueBtn}}
       </button>
     </ion-row>
