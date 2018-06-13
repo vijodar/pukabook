@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, Select } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
+import {UserProfilePage} from '../user-profile/user-profile';
+import {PendingPage} from '../pending/pending';
+import {ReadLaterPage} from '../read-later/read-later';
+import {HelpPage} from '../help/help';
+
 
 @IonicPage()
 @Component({
@@ -17,7 +22,7 @@ export class StartPage {
   }
   //endregion CONSTANTS
 
-  //region PUBLIC_METHODS
+  //region PUBLIC_VARIABLES
   public homeRoot = 'HomePage'
   public exploreRoot = 'ExplorePage'
   
@@ -25,7 +30,7 @@ export class StartPage {
   public exploreTitle: string
 
   public color: string
-  //endregion PUBLIC_METHODS
+  //endregion PUBLIC_VARIABLES
 
   //region CONSTRUCTOR
   constructor(
@@ -50,4 +55,25 @@ export class StartPage {
   }
   //endregion PRIVATE_METHODS
 
+
+  //region PUBLIC_METHODS
+  public openPage(page:string){
+    if(page=='user-profile'){
+      this.navCtrl.push(UserProfilePage);
+    }else if(page=='pending'){
+      this.navCtrl.push(PendingPage);
+    }else if(page=='read-later'){
+      this.navCtrl.push(ReadLaterPage);
+    }else if(page=='help'){
+      this.navCtrl.push(HelpPage);
+    }else{
+
+    }
+  }
+
+  public logout(){
+    
+  }
+  //endregion PRIVATE_METHODS
+  
 }

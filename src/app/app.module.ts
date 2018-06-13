@@ -27,7 +27,6 @@ import { SQLite } from '@ionic-native/sqlite';
 //region PAGES
 import { LoginPage } from '../pages/login/login';
 import { StartPage } from '../pages/start/start';
-import { EreaderPage } from './../pages/ereader/ereader';
 //endregion PAGES
 
 //region PROVIDERS
@@ -48,8 +47,13 @@ import { BookDetailsPageModule } from '../pages/book-details/book-details.module
 import { ComponentsModule } from '../components/components.module';
 import { AuthorPageModule } from '../pages/author/author.module';
 import { EreaderPageModule } from '../pages/ereader/ereader.module';
+import { HelpPageModule } from '../pages/help/help.module';
+import { PendingPageModule } from '../pages/pending/pending.module';
+import { ReadLaterPageModule } from '../pages/read-later/read-later.module';
+import { UserProfilePageModule } from '../pages/user-profile/user-profile.module';
 //endregion PAGE_MODULES
 
+//region FIREBASE_CONF
 const firebaseConfig = {
   apiKey: "AIzaSyC-dp0BeYX3yHp1aXnjojLsuCfU2oE0UEg",
   authDomain: "pukabook-3f5ec.firebaseapp.com",
@@ -58,6 +62,7 @@ const firebaseConfig = {
   storageBucket: "pukabook-3f5ec.appspot.com",
   messagingSenderId: "627097748993"
 };
+//endregion FIREBASE_CONF
 
 @NgModule({
   declarations: [
@@ -84,6 +89,10 @@ const firebaseConfig = {
     BookDetailsPageModule,
     AuthorPageModule,
     EreaderPageModule,
+    HelpPageModule,
+    PendingPageModule,
+    ReadLaterPageModule,
+    UserProfilePageModule,
     ComponentsModule,
   ],
   bootstrap: [IonicApp],
