@@ -27,6 +27,7 @@ import { SQLite } from '@ionic-native/sqlite';
 //region PAGES
 import { LoginPage } from '../pages/login/login';
 import { StartPage } from '../pages/start/start';
+import { EreaderPage } from './../pages/ereader/ereader';
 //endregion PAGES
 
 //region PROVIDERS
@@ -34,7 +35,7 @@ import { RestClientProvider } from '../providers/rest-client/restClient';
 import { ErrorDialogProvider } from '../providers/error-dialog/error-dialog';
 import { UserDBProvider } from '../providers/userdb/userdb';
 import { HasherProvider } from '../providers/hasher/hasher';
-import {PhotoViewer} from '@ionic-native/photo-viewer';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { GooglePlus } from '@ionic-native/google-plus';
 //endregion PROVIDERS
 
@@ -44,7 +45,7 @@ import { ExplorePageModule } from '../pages/explore/explore.module';
 import { BookDetailsPageModule } from '../pages/book-details/book-details.module';
 import { ComponentsModule } from '../components/components.module';
 import { AuthorPageModule } from '../pages/author/author.module';
-import { DirectivesModule } from './../directives/directives.module';
+import { EreaderPageModule } from '../pages/ereader/ereader.module';
 //endregion PAGE_MODULES
 
 const firebaseConfig = {
@@ -80,9 +81,8 @@ const firebaseConfig = {
     ExplorePageModule,
     BookDetailsPageModule,
     AuthorPageModule,
+    EreaderPageModule,
     ComponentsModule,
-    DirectivesModule,
-    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
