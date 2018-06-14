@@ -49,8 +49,6 @@ export class BooksGridComponent implements OnHttpResponse {
         }).then(() => {
           this.navCtrl.remove(currentIndex);
         })
-      } else {
-
       }
 
     } else {

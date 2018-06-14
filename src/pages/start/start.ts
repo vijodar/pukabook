@@ -7,7 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserProfilePage } from '../user-profile/user-profile';
 import { PendingPage } from '../pending/pending';
 import { ReadLaterPage } from '../read-later/read-later';
-import { HelpPage } from '../help/help';
 import { LoginPage } from '../login/login';
 import { UserDBProvider } from '../../providers/userdb/userdb';
 
@@ -120,9 +119,6 @@ export class StartPage {
         break;
       case ('read-later'):
         this.navCtrl.push(ReadLaterPage);
-        break;
-      case ('help'):
-        this.navCtrl.push(HelpPage);
         break;
     }
   }
