@@ -19,17 +19,8 @@ export class HasherProvider {
   }
 
   public decrypt(string: string) {
-    var ciphertext = CryptoJS.enc.Base64.parse(string)
-    var iv = ciphertext.clone()
-    iv.sigBytes = 16
-    iv.clamp()
-    ciphertext.words.splice(0, 4)
-    ciphertext.sigBytes -= 16
-
-    var decrypted = CryptoJS.AES.decrypt({ciphertext: ciphertext}, this.key, {
-        iv: iv
-    });
-    return decrypted.toString(CryptoJS.enc.Utf8);
+    var bytes = CryptoJS.AES.decrypt(string, this.key)
+    return bytes.toString(CryptoJS.enc.Utf8)
   }
   //endregion PUBLIC_METHODS
 }
