@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="pukabook.jodar.vicente" version="0.0.18520181101" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="pukabook.jodar.vicente" version="1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PukaBook</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <description>Read it online</description>
+    <author email="pukabook@pukabook.com" href="http://ionicframework.com/">PukaBook Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
