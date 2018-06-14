@@ -8,6 +8,7 @@ import { UserDBProvider } from '../providers/userdb/userdb';
 import { RestClientProvider } from '../providers/rest-client/restClient';
 import { OnHttpResponse } from '../interfaces/onHttpResponse';
 import { StartPage } from '../pages/start/start';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @Component({
     templateUrl: 'app.html'
@@ -41,8 +42,10 @@ export class MyApp implements OnHttpResponse {
         private splashScreen: SplashScreen,
         private translate: TranslateService,
         private userdb: UserDBProvider,
-        private rjs: RestClientProvider) {
+        private rjs: RestClientProvider,
+        private screenOrientation: ScreenOrientation) {
 
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT)
         this.initTranslate();
         platform.ready().then(() => {
             this.checkIfIsLogged()
