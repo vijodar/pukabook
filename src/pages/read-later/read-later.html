@@ -8,12 +8,28 @@
     </ion-buttons>
   </ion-navbar>
 
-  <searchbar-books *ngIf="showSBar" [showFilterBtn]="false"
-    [url]="urlSearch" [onSearchBooks]="this" ></searchbar-books>
+  <searchbar-books *ngIf="showSBar" [showFilterBtn]="false" [url]="urlSearch" [onSearchBooks]="this"></searchbar-books>
 </ion-header>
 
+<ion-content *ngIf="noBooks">
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <ion-col text-center>
+        <div>
+          {{noBooksMsg}}
+        </div>
+        <div padding-bottom>
+          ¯|_(ツ)_|¯
+        </div>
+        <button ion-button color="purple" (click)="popOut()">
+          {{noBooksBtn}}
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
 
-<ion-content padding>
+<ion-content padding *ngIf="!noBooks">
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>

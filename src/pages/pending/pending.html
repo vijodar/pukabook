@@ -1,21 +1,37 @@
 <ion-header>
-    <ion-navbar color="purple">
-      <ion-title>{{title}}</ion-title>
-      <ion-buttons end>
-        <button ion-button icon-only (click)="showHideSearchBar()">
-          <ion-icon name="search"></ion-icon>
+  <ion-navbar color="purple">
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showHideSearchBar()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <searchbar-books *ngIf="showSBar" [showFilterBtn]="false" [url]="urlSearch" [onSearchBooks]="this"></searchbar-books>
+</ion-header>
+
+<ion-content *ngIf="noBooks">
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <ion-col text-center>
+        <div>
+          {{noBooksMsg}}
+        </div>
+        <div padding-bottom>
+          ¯|_(ツ)_|¯
+        </div>
+        <button ion-button color="purple" (click)="popOut()">
+          {{noBooksBtn}}
         </button>
-      </ion-buttons>
-    </ion-navbar>
-  
-    <searchbar-books *ngIf="showSBar" [showFilterBtn]="false"
-      [url]="urlSearch" [onSearchBooks]="this" ></searchbar-books>
-  </ion-header>
-  
-  
-  <ion-content padding>
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
-    <books-grid [books]="books" [launchFromRoot]="true"></books-grid>
-  </ion-content>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content padding *ngIf="!noBooks">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <books-grid [books]="books" [launchFromRoot]="true"></books-grid>
+</ion-content>

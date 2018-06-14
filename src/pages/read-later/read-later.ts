@@ -21,13 +21,19 @@ export class ReadLaterPage implements OnHttpResponse, OnGetBooksResponse {
   //region CONSTANTS
   private translateStrings = {
     "READLATER_TITLE": "READLATER_TITLE",
+    "HOME_NO_PENDINGS_MSG": "HOME_NO_PENDINGS_MSG",
+    "PEND_RLATER_NO_BOOKS": "PEND_RLATER_NO_BOOKS"
   }
   //endregion CONSTANTS
 
   //region PUBLIC_VARIABLES
   public books: Book[]
 
+  public noBooks: boolean
+
   public title: string
+  public noBooksMsg: string
+  public noBooksBtn: string
   public showSBar: boolean
   public urlSearch: string
   public filter: string
@@ -50,7 +56,12 @@ export class ReadLaterPage implements OnHttpResponse, OnGetBooksResponse {
     var result = data.result
     if (result.auth) {
       this.userdb.modifyUserToken(result.t)
-      this.books = result.books
+      if (result.books) {
+        this.noBooks = false
+        this.books = result.books
+      } else {
+        this.noBooks = true
+      }
     } else {
       this.userdb.getUser()
         .then(value => {
@@ -81,6 +92,12 @@ export class ReadLaterPage implements OnHttpResponse, OnGetBooksResponse {
     this.translate.get(this.translateStrings.READLATER_TITLE)
       .subscribe(value => { this.title = value })
 
+    this.translate.get(this.translateStrings.HOME_NO_PENDINGS_MSG)
+      .subscribe(value => { this.noBooksMsg = value })
+
+    this.translate.get(this.translateStrings.PEND_RLATER_NO_BOOKS)
+      .subscribe(value => { this.noBooksBtn = value })
+
     this.getBooks()
   }
 
@@ -101,6 +118,10 @@ export class ReadLaterPage implements OnHttpResponse, OnGetBooksResponse {
   public showHideSearchBar() {
     this.showSBar = !this.showSBar
     this.content.resize()
+  }
+
+  public popOut() {
+    this.navCtrl.pop()
   }
   //endregion PUBLIC_METHODS
 }
