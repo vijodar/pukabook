@@ -44,5 +44,9 @@
     "HOME_PENDINGS_CONTINUE_READINGS": "Continue your reading",
     "HOME_PENDINGS_SIMILAR": "Might interest you",
     "READLATER_TITLE": "Read later",
-    "PENDING_TITLE": "Readings"
+    "PENDING_TITLE": "Readings",
+    "LOGOUT_TITLE": "Do you want to log out?",
+    "WELCOME_MSG": "Welcome",
+    "USERPROFILE_TITLE": "User settings",
+    "PEND_RLATER_NO_BOOKS": "Back"
 }
