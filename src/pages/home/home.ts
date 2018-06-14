@@ -120,7 +120,7 @@ export class HomePage implements OnHttpResponse {
       {
         idbook: this.lastBook.id,
         bname: this.lastBook.bname,
-      })
+      }, { animate: true, direction: 'forward' })
   }
   //endregion PUBLIC_METHODS
 

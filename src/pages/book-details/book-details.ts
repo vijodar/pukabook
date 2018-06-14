@@ -113,7 +113,7 @@ export class BookDetailsPage implements OnHttpResponse, OnGetBooksResponse {
       {
         idbook: this.book.id,
         bname: this.book.bname,
-      })
+      }, { animate: true, direction: 'forward' })
   }
   //endregion PUBLIC_METHODS
 }
