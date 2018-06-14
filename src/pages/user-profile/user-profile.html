@@ -1,19 +1,23 @@
-<!--
-  Generated template for the UserProfilePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar color="purple">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>profile</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-PERFIL DEL USUARIO
+  <ion-list>
+    <button ion-item (click)="userSettings.editEmail()">
+      <ion-icon name="mail" item-start></ion-icon>
+      <ion-label>Email change</ion-label>
+    </button>
+    <button ion-item (click)="userSettings.editUser()">
+      <ion-icon name="contact" item-start></ion-icon>
+      <ion-label>User change</ion-label>
+    </button>
+    <button ion-item (click)="userSettings.editPass()">
+      <ion-icon name="lock" item-start></ion-icon>
+      <ion-label>Pass change</ion-label>
+    </button>
+  </ion-list>
 </ion-content>
