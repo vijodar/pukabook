@@ -9,6 +9,7 @@ import { HasherProvider } from '../../providers/hasher/hasher';
 import { NavController } from 'ionic-angular';
 import { StartPage } from '../../pages/start/start';
 import sha1 from 'js-sha1';
+import { StatusBar } from '@ionic-native/status-bar';
 
 @Component({
   selector: 'signin',
@@ -32,33 +33,20 @@ export class SigninComponent implements OnHttpResponse {
 
   //region PRIVATE_VARIABLES
   private showPwd: boolean = false;
-  // Initialize Firebase
   //endregion PRIVATE_VARIABLES
-  
+
   //region PUBLIC_VARIABLES
   public pwdType: string = "password"
   public pwdIcon: string = "md-eye-off"
-  
+
   public signinEmail: string
   public signinPass: string
-  
+
   public emailPlaceHolder: string
   public passwordPlaceHolder: string
   public loginBtnText: string
   public googleBtnText: string
   //endregion PUBLIC_VARIABLES
-  
-  //region CONST
-  constructor(
-    public rjs: RestClientProvider,
-    public translate: TranslateService,
-    public dialogError: ErrorDialogProvider,
-    public userdb: UserDBProvider,
-    public hasher: HasherProvider,) {
-
-    this.starter()
-  }
-  //endregion CONST
 
   //region ONHTTPRESPONSE
   onDataReceived(data) {
@@ -67,6 +55,7 @@ export class SigninComponent implements OnHttpResponse {
       var user: User = <User>result.userinfo
       user.token = result.t
       this.userdb.addUser(user)
+      this.statusBar.overlaysWebView(false)
       this.navCtrl.setRoot(StartPage, {}, { animate: true, direction: 'forward' })
     } else {
       this.onErrorReceivingData(1)
@@ -76,6 +65,60 @@ export class SigninComponent implements OnHttpResponse {
     this.dialogError.showErrorDialog(message)
   }
   //endregion ONHTTPRESPONSE
+
+  //region CONST
+  constructor(
+    private rjs: RestClientProvider,
+    private translate: TranslateService,
+    private dialogError: ErrorDialogProvider,
+    private userdb: UserDBProvider,
+    private hasher: HasherProvider,
+    private statusBar: StatusBar) {
+
+    this.starter()
+  }
+  //endregion CONST
+
+  //region PRIVATE_METHODS
+  private starter() {
+    this.signinEmail = ""
+    this.signinPass = ""
+
+    this.translate.get(this.translateStrings.SIGN_IN_BUTTON)
+      .subscribe(value => { this.loginBtnText = value })
+
+    this.translate.get(this.translateStrings.SIGN_IN_EMAIL_PLACEHOLDER)
+      .subscribe(value => { this.emailPlaceHolder = value })
+
+    this.translate.get(this.translateStrings.SIGN_IN_GOOGLE)
+      .subscribe(value => { this.googleBtnText = value })
+
+    this.translate.get(this.translateStrings.SIGN_IN_PASSWORD_PLACEHOLDER)
+      .subscribe(value => { this.passwordPlaceHolder = value })
+  }
+
+  private checkEmailField(): boolean {
+    if (this.signinEmail.length > 0) {
+      if (this.signinEmail.match(/^(\w|[_.])+\@[a-z]+\.[a-z]+/)) {
+        return true
+      } else {
+        this.dialogError.showErrorDialog(3)
+      }
+    } else {
+      this.dialogError.showErrorDialog(2)
+    }
+    return false
+  }
+
+  private checkPassField(): boolean {
+    if (this.signinPass.length > 0) {
+      return true
+    } else {
+      this.dialogError.showErrorDialog(4)
+    }
+    return false
+  }
+  //endregion PRIVATE_METHODS
 
   //region PUBLIC_METHODS
   public eventHandler(keyCode) {
@@ -105,45 +148,4 @@ export class SigninComponent implements OnHttpResponse {
 
   //endregion PUBLIC_METHODS
 
-  //region PRIVATE_METHODS
-  private starter() {
-    this.signinEmail = ""
-    this.signinPass = ""
-    this.userdb.removeUser()
-
-    this.translate.get(this.translateStrings.SIGN_IN_BUTTON)
-    .subscribe(value => { this.loginBtnText = value })
-
-    this.translate.get(this.translateStrings.SIGN_IN_EMAIL_PLACEHOLDER)
-    .subscribe(value => { this.emailPlaceHolder = value })
-
-    this.translate.get(this.translateStrings.SIGN_IN_GOOGLE)
-    .subscribe(value => { this.googleBtnText = value })
-
-    this.translate.get(this.translateStrings.SIGN_IN_PASSWORD_PLACEHOLDER)
-    .subscribe(value => { this.passwordPlaceHolder = value })
-  }
-
-  private checkEmailField(): boolean {
-    if (this.signinEmail.length > 0) {
-      if (this.signinEmail.match(/^(\w|[_.])+\@[a-z]+\.[a-z]+/)) {
-        return true
-      } else {
-        this.dialogError.showErrorDialog(3)
-      }
-    } else {
-      this.dialogError.showErrorDialog(2)
-    }
-    return false
-  }
-
-  private checkPassField(): boolean {
-    if (this.signinPass.length > 0) {
-      return true
-    } else {
-      this.dialogError.showErrorDialog(4)
-    }
-    return false
-  }
-  //endregion PRIVATE_METHODS
 }

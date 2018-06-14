@@ -10,6 +10,7 @@ import sha1 from 'js-sha1';
 import { User } from '../../model/user';
 import { StartPage } from '../../pages/start/start';
 import { UserDBProvider } from '../../providers/userdb/userdb';
+import { StatusBar } from '@ionic-native/status-bar';
 
 @Component({
   selector: 'google-login',
@@ -44,6 +45,7 @@ export class GoogleLoginComponent implements OnHttpResponse {
       var user: User = <User>result.userinfo
       user.token = result.t
       this.userdb.addUser(user)
+      this.statusBar.overlaysWebView(false)
       this.navCtrl.setRoot(StartPage, {}, { animate: true, direction: 'forward' })
     }
   }
@@ -60,7 +62,8 @@ export class GoogleLoginComponent implements OnHttpResponse {
     private rjs: RestClientProvider,
     private hasher: HasherProvider,
     private userdb: UserDBProvider,
-    private errorDialog: ErrorDialogProvider, ) {
+    private errorDialog: ErrorDialogProvider,
+    private statusBar: StatusBar) {
 
     this.starter()
   }
