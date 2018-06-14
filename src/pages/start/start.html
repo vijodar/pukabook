@@ -1,19 +1,34 @@
 <ion-menu [content]="content">
     <ion-header>
         <ion-toolbar color="purple">
-            <ion-title>Menu</ion-title>
+            <ion-title>{{welcomeMsg}},</ion-title>
+            <ion-buttons end>
+                <button ion-button (click)="logout()">
+                    <ion-icon name="log-out"></ion-icon>
+                </button>
+            </ion-buttons>
+        </ion-toolbar>
+        <ion-toolbar color="purple" text-wrap>
+            <ion-title>
+                {{username}}
+            </ion-title>
         </ion-toolbar>
     </ion-header>
 
     <ion-content>
         <ion-list>
-            <button ion-item (click)= "openPage('user-profile')">User Profile</button>
-            <button ion-item (click)= "openPage('pending')">Pendings</button>
-            <button ion-item (click)= "openPage('read-later')">Read later</button>
-        </ion-list>
-        <ion-list class="bottom">
-            <button ion-item (click)= "openPage('help')">Help</button>
-            <button ion-item (click)= "logout()">Logout</button>
+            <button *ngIf="!gUser" ion-item (click)="openPage('user-profile')">
+                <ion-icon name="contact" item-start></ion-icon>
+                <ion-label>{{userProfileTitle}}</ion-label>
+            </button>
+            <button ion-item (click)="openPage('pending')">
+                <ion-icon name="ios-bookmarks" item-start></ion-icon>
+                <ion-label>{{pendingTitle}}</ion-label>
+            </button>
+            <button ion-item (click)="openPage('read-later')">
+                <ion-icon name="ios-bookmark" item-start></ion-icon>
+                <ion-label>{{readLaterTitle}}</ion-label>
+            </button>
         </ion-list>
     </ion-content>
 </ion-menu>
