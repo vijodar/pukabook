@@ -36,6 +36,7 @@ import { UserDBProvider } from '../providers/userdb/userdb';
 import { HasherProvider } from '../providers/hasher/hasher';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { ScreenOrientation } from '@ionic-native/screen-orientation'
 //endregion PROVIDERS
 
 //region PAGE_MODULES
@@ -47,10 +48,10 @@ import { BookDetailsPageModule } from '../pages/book-details/book-details.module
 import { ComponentsModule } from '../components/components.module';
 import { AuthorPageModule } from '../pages/author/author.module';
 import { EreaderPageModule } from '../pages/ereader/ereader.module';
-import { HelpPageModule } from '../pages/help/help.module';
 import { PendingPageModule } from '../pages/pending/pending.module';
 import { ReadLaterPageModule } from '../pages/read-later/read-later.module';
 import { UserProfilePageModule } from '../pages/user-profile/user-profile.module';
+import { UsersettingsProvider } from '../providers/usersettings/usersettings';
 //endregion PAGE_MODULES
 
 //region FIREBASE_CONF
@@ -89,7 +90,6 @@ const firebaseConfig = {
     BookDetailsPageModule,
     AuthorPageModule,
     EreaderPageModule,
-    HelpPageModule,
     PendingPageModule,
     ReadLaterPageModule,
     UserProfilePageModule,
@@ -112,6 +112,8 @@ const firebaseConfig = {
     PhotoViewer,
     SQLite,
     GooglePlus,
+    ScreenOrientation,
+    UsersettingsProvider
   ]
 })
 export class AppModule { }
