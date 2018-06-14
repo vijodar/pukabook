@@ -22,6 +22,8 @@
     "ERROR_MSG_6": "Can't connect with the server. Try it again later",
     "ERROR_MSG_7": "The search has not been successful",
     "ERROR_MSG_8": "No Google App found. Consider installing if you want to sign in with your Google account",
+    "ERROR_MSG_9": "The password does not match the current",
+    "ERROR_MSG_10": "The entered values are incorrect",
     "HOME_TITLE": "Home",
     "EXPLORE_TITLE": "Explore",
     "BOOK_DETAILS_READ": "Read",
@@ -47,6 +49,15 @@
     "PENDING_TITLE": "Readings",
     "LOGOUT_TITLE": "Do you want to log out?",
     "WELCOME_MSG": "Welcome",
+    "PEND_RLATER_NO_BOOKS": "Back",
     "USERPROFILE_TITLE": "User settings",
-    "PEND_RLATER_NO_BOOKS": "Back"
+    "USERPROFILE_EMAIL_TITLE": "Change your email",
+    "USERPROFILE_USER_TITLE": "Change your username",
+    "USERPROFILE_PASS_TITLE": "Change your password",
+    "USERPROFILE_EMAIL_PLACEHOLDER": "New email",
+    "USERPROFILE_USER_PLACEHOLDER": "New username",
+    "USERPROFILE_PASS_PLACEHOLDER": "New password",
+    "USERPROFILE_PASSOLD_PLACEHOLDER": "Current password",
+    "DIALOG_SEND": "Send",
+    "DIALOG_CLOSE_APP": "It is necessary restart Pukabook to save the new data"
 }
